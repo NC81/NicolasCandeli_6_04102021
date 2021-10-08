@@ -1,0 +1,16 @@
+.header {
+  display: flex;
+  margin: 42px 35% 0 30px;
+  nav {
+    margin-left: 86px;
+    line-height: 50px;
+  }
+  &__liste {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    a {
+      @include tags;
+    }
+  }
+}

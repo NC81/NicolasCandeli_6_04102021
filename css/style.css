@@ -1,0 +1,128 @@
+.header {
+  display: flex;
+  margin: 42px 35% 0 30px;
+}
+.header nav {
+  margin-left: 86px;
+  line-height: 50px;
+}
+.header__liste {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+}
+.header__liste a {
+  font-weight: 500;
+  font-size: 0.75em;
+  color: #901C1C;
+  border: solid 0.5px #C4C4C4;
+  border-radius: 11px;
+  padding: 1px 6px 1px 3px;
+  margin: 0 2px;
+}
+.header__liste a:hover, .header__liste a:focus {
+  background-color: #901C1C;
+  color: white;
+}
+
+* {
+  font-family: "DM Sans", sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1, h2, ul, p {
+  padding: 0;
+  margin: 0;
+}
+
+.acc-bloc {
+  max-width: 1440px;
+  width: 90%;
+}
+
+.acc-main {
+  margin-top: 110px;
+}
+.acc-main > h1 {
+  position: absolute;
+  top: 44px;
+  right: 5%;
+  font-size: 2.25em;
+  font-weight: normal;
+  color: #901C1C;
+}
+.acc-main > section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10%;
+}
+
+.acc-photogr {
+  margin-bottom: 50px;
+}
+.acc-photogr__lien {
+  display: block;
+}
+.acc-photogr__lien > img {
+  display: block;
+  margin: 0 auto;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.acc-photogr__lien > h2 {
+  font-size: 2.25em;
+  font-weight: normal;
+  color: #D3573C;
+  text-align: center;
+}
+.acc-photogr__lieu {
+  font-size: 0.813em;
+  text-align: center;
+  color: #901C1C;
+}
+.acc-photogr__phrase {
+  font-size: 0.813em;
+  text-align: center;
+  margin-top: 3px;
+}
+.acc-photogr__revenu {
+  font-size: 0.563em;
+  text-align: center;
+  color: #757575;
+  margin-top: 3px;
+}
+.acc-photogr__liste {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style-type: none;
+  margin-top: 5px;
+}
+.acc-photogr__liste a {
+  font-weight: 500;
+  font-size: 0.75em;
+  color: #901C1C;
+  border: solid 0.5px #C4C4C4;
+  border-radius: 11px;
+  padding: 1px 6px 1px 3px;
+  margin: 0 2px;
+}
+.acc-photogr__liste a:hover, .acc-photogr__liste a:focus {
+  background-color: #901C1C;
+  color: white;
+}
+
+/*# sourceMappingURL=style.css.map */
