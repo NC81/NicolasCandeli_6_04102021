@@ -12,6 +12,20 @@
   } 
 }
 
+@mixin tags($em: 0.75em, $br: 11px) {
+  font-weight: 500;
+  font-size: $em;
+  color: $clr-primaire;
+  border: solid 0.5px #C4C4C4;
+  border-radius: $br;
+  padding: 1px 6px 1px 3px;
+  margin: 0 2px;
+  &:hover, &:focus {
+    background-color: $clr-primaire;
+    color: white;
+  } 
+}
+
 @mixin mob-max {
   @media all and (max-width: map-get($bkpt, mob)){
     @content;
@@ -21,5 +35,44 @@
 @mixin tab-max {
   @media all and (min-width: map-get($bkpt, tab)){
     @content;
+  }
+}
+
+@mixin pseudo-btn($clr) {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 52px;
+  height: 7px;
+  background-color: $clr;
+  top: 0;
+  right: 0;
+}
+
+@mixin btn-barre($deg) {
+  content: "";
+    display: block;
+    position: absolute;
+    width: 54px;
+    height: 5px;
+    left: 0;
+    transform: rotate($deg);
+}
+
+@mixin btn-ferme($bg, $clr, $top, $right) {
+  position: absolute;
+  right: $right;
+  top: $top;
+  width: 50px;
+  height: 50px;
+  border: none;
+  background-color: $bg;
+  &::before {
+    @include btn-barre(-45deg);
+    background-color: $clr;
+  }
+  &::after {
+    @include btn-barre(45deg);
+    background-color: $clr;
   }
 }

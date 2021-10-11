@@ -1,0 +1,46 @@
+// Modale du formulaire de contact
+.modale-contact {
+  display: none;
+  position: fixed;
+  background-color: white;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  &__form {
+    position: relative;
+    width: 669px;
+    height: 900px;
+    margin: 100px auto;
+    background-color: $clr-tertiaire;
+    border-radius: 5px;
+    padding: 18px 35px;
+    h1 {
+    font-size: 64px;
+    line-height: 70px;
+    margin-bottom: 28px;
+    }
+    label {
+    font-size: 2.25em;
+    }
+    input {
+    width: 100%;
+    line-height: 68px;
+    border: none;
+    border-radius: 5px;
+      &[id=email] {
+        margin-bottom: 10px;
+      }
+    }
+    textarea {
+    width: 100%;
+    height: 170px;
+    border: none;
+    margin: 5px 0 26px 0;
+    }
+    .invis {
+    position: absolute;
+    top: 10000px;
+    }
+  }
+}

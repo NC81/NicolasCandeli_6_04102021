@@ -1,0 +1,77 @@
+// Fiche de la page d'accueil
+.fiche {
+  margin-bottom: 50px;
+  &__lien {
+    display: block;
+    img {
+      margin: 0 auto;
+    }
+    > h2 {
+      font-size: 2.25em;
+      color: $clr-secondaire;
+      text-align: center;
+    }
+  }
+  &__lieu {
+    font-size: 0.813em;
+    text-align: center;
+    color: $clr-primaire;
+  }
+  &__citation {
+    font-size: 0.813em;
+    text-align: center;
+    margin-top: 3px;
+  }
+  &__prix {
+    font-size: 0.563em;
+    text-align: center;
+    color: #757575;
+    margin-top: 3px;
+  }
+  &__liste {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 5px;
+    a {
+      @include tags;
+    }
+  }
+}
+
+// Fiche de la page du photographe
+.present {
+  display: flex;
+  justify-content: space-between;
+  background-color: $clr-quaternaire;
+  margin-top: 40px;
+  padding: 56px 50px;
+  &-info {
+    position: relative;
+    h1 {
+      font-size: 4em;
+      color: $clr-secondaire;
+    }
+    &__lieu {
+      font-size: 1.5em;
+      color: $clr-primaire;
+    }
+    &__citation {
+      font-size: 1.125em;
+      color: #525252;
+      margin-top: 18px;
+    }
+    &__liste {
+      display: flex;
+      margin-top: 20px;
+      a {
+        @include tags(1.125em, 12px);
+      }
+    }
+    button {
+      position: absolute;
+      right: -193px;
+      top: 0;
+    }
+  }
+}

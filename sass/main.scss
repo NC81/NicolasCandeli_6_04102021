@@ -3,7 +3,14 @@
 
 @import "./base/base";
 
+@import "./components/boutons";
+@import "./components/images";
+@import "./components/fiches";
+
+@import "./layouts/bloc-page";
 @import "./layouts/header";
-@import "./layouts/main";
+@import "./layouts/modale-carous";
+@import "./layouts/modale-form";
 
 @import "./pages/accueil";
+@import "./pages/photographe";

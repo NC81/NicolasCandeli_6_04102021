@@ -1,0 +1,42 @@
+// Modale du carrousel
+.modale-carrous {
+  display: none; 
+  position: fixed;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  &__liste {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 984px;
+    width: 1253px;
+    margin: 100px auto;
+    li {
+    display: block;
+    position: relative;
+    color: $clr-primaire;
+    }
+    img {
+    width: 1050px;
+    height: 900px;
+    object-fit: cover;
+    border-radius: 5px;
+    }
+    figcaption {
+    font-size: 1.5em;   
+    }
+    .fa-chevron-left {
+    position: absolute;
+    left: -64px;
+    top: 50%;
+    }
+    .fa-chevron-right {
+    position: absolute;
+    right: -64px;
+    top: 50%
+    }
+  }
+}

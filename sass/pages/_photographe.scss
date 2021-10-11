@@ -1,0 +1,35 @@
+// SECTION GALERIE
+// Menu déroulant et Conteneur de la galerie
+.galerie {
+  padding-top: 20px;
+  .galerie-tri {
+    position: relative;
+    font-size: 1.125em;
+    font-weight: 700;  
+  }
+  .galerie-cont {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2%;
+    margin-top: 20px;
+  }
+}
+
+// Informations supplémentaires (nombre de "j'aime" et prix)
+.infosup {
+  position: fixed;
+  bottom: 0;
+  right: 36px;
+  width: 376px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #DB8876;
+  font-size: 1.5em;
+  color: black;
+  padding: 21px 31px;
+  border-radius: 5px 5px 0 0;
+  p {
+    font-weight: 500;
+  }    
+}
