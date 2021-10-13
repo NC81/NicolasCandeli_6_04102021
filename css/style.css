@@ -74,6 +74,152 @@ ul {
   }
 }
 
+.btn-ferme--form {
+  position: absolute;
+  right: 30px;
+  top: 28px;
+  width: 72px;
+  height: 72px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+}
+.btn-ferme--form::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 54px;
+  height: 6px;
+  left: 7px;
+  top: 22px;
+  transform: rotate(-45deg);
+  background-color: white;
+}
+.btn-ferme--form::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 54px;
+  height: 6px;
+  left: 7px;
+  top: 22px;
+  transform: rotate(45deg);
+  background-color: white;
+}
+.btn-ferme--form:hover::before, .btn-ferme--form:hover::after {
+  background-color: #901C1C;
+}
+@media all and (max-width: 1024px) {
+  .btn-ferme--form {
+    position: absolute;
+    right: 30px;
+    top: 20px;
+    width: 48px;
+    height: 48px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+  }
+  .btn-ferme--form::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 32px;
+    height: 4px;
+    left: 7px;
+    top: 22px;
+    transform: rotate(-45deg);
+    background-color: white;
+    background-color: white;
+  }
+  .btn-ferme--form::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 32px;
+    height: 4px;
+    left: 7px;
+    top: 22px;
+    transform: rotate(45deg);
+    background-color: white;
+    background-color: white;
+  }
+  .btn-ferme--form:hover::before, .btn-ferme--form:hover::after {
+    background-color: #901C1C;
+  }
+}
+
+.btn-ferme--carous {
+  position: absolute;
+  right: -80px;
+  top: 0;
+  width: 72px;
+  height: 72px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+}
+.btn-ferme--carous::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 54px;
+  height: 6px;
+  left: 7px;
+  top: 22px;
+  transform: rotate(-45deg);
+  background-color: #901C1C;
+}
+.btn-ferme--carous::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 54px;
+  height: 6px;
+  left: 7px;
+  top: 22px;
+  transform: rotate(45deg);
+  background-color: #901C1C;
+}
+.btn-ferme--carous:hover::before, .btn-ferme--carous:hover::after {
+  background-color: #DB8876;
+}
+@media all and (max-width: 599px) {
+  .btn-ferme--carous {
+    position: absolute;
+    right: -50px;
+    top: 10px;
+    width: 48px;
+    height: 48px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+  }
+  .btn-ferme--carous::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 32px;
+    height: 4px;
+    left: 7px;
+    top: 22px;
+    transform: rotate(-45deg);
+    background-color: #901C1C;
+    background-color: #901C1C;
+  }
+  .btn-ferme--carous::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 32px;
+    height: 4px;
+    left: 7px;
+    top: 22px;
+    transform: rotate(45deg);
+    background-color: #901C1C;
+    background-color: #901C1C;
+  }
+  .btn-ferme--carous:hover::before, .btn-ferme--carous:hover::after {
+    background-color: #DB8876;
+  }
+}
+
 .menu-liste {
   position: absolute;
   top: -10px;
@@ -110,157 +256,62 @@ ul {
   border-bottom: 1px solid white;
 }
 
-#chvr-gau {
+.btn-chvr {
   position: absolute;
-  left: -64px;
-  top: calc(50% - 64px);
-}
-#chvr-gau:hover {
-  color: #D3573C;
-}
-@media all and (max-width: 1024px) {
-  #chvr-gau {
-    font-size: 2em;
-    left: -30px;
-    top: calc(50% - 32px);
-  }
-}
-
-#chvr-dro {
-  position: absolute;
-  right: -64px;
-  top: calc(50% - 64px);
-}
-#chvr-dro:hover {
-  color: #D3573C;
-}
-@media all and (max-width: 1024px) {
-  #chvr-dro {
-    font-size: 2em;
-    right: -30px;
-    top: calc(50% - 32px);
-  }
-}
-
-.btn-ferme--form {
-  position: absolute;
-  right: 30px;
-  top: 28px;
-  width: 50px;
-  height: 50px;
+  top: calc(50% - 96px);
+  width: 96px;
+  height: 96px;
   border: none;
-  background-color: #DB8876;
+  background-color: rgba(255, 255, 255, 0);
 }
-.btn-ferme--form::before {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 54px;
-  height: 5px;
-  left: 0;
-  transform: rotate(-45deg);
-  background-color: white;
+.btn-chvr--gau {
+  left: -96px;
 }
-.btn-ferme--form::after {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 54px;
-  height: 5px;
-  left: 0;
-  transform: rotate(45deg);
-  background-color: white;
+.btn-chvr--gau:hover #chvr-gau {
+  color: #DB8876;
 }
-@media all and (max-width: 1024px) {
-  .btn-ferme--form {
+.btn-chvr--dro {
+  right: -96px;
+}
+.btn-chvr--dro:hover #chvr-dro {
+  color: #DB8876;
+}
+.btn-chvr #chvr-gau, .btn-chvr #chvr-dro {
+  color: #901C1C;
+}
+@media all and (max-width: 599px) {
+  .btn-chvr #chvr-gau, .btn-chvr #chvr-dro {
+    font-size: 2em;
+  }
+}
+@media all and (max-width: 599px) {
+  .btn-chvr {
     position: absolute;
-    right: 30px;
-    top: 20px;
-    width: 30px;
-    height: 30px;
+    top: calc(50% - 48px);
+    width: 48px;
+    height: 48px;
     border: none;
-    background-color: #DB8876;
+    background-color: rgba(255, 255, 255, 0);
   }
-  .btn-ferme--form::before {
-    content: "";
-    display: block;
-    position: absolute;
-    width: 32px;
-    height: 4px;
-    left: 0;
-    transform: rotate(-45deg);
-    background-color: white;
+  .btn-chvr--gau {
+    left: -48px;
   }
-  .btn-ferme--form::after {
-    content: "";
-    display: block;
-    position: absolute;
-    width: 32px;
-    height: 4px;
-    left: 0;
-    transform: rotate(45deg);
-    background-color: white;
+  .btn-chvr--gau:hover #chvr-gau {
+    color: #DB8876;
+  }
+  .btn-chvr--dro {
+    right: -48px;
+  }
+  .btn-chvr--dro:hover #chvr-dro {
+    color: #DB8876;
+  }
+  .btn-chvr #chvr-gau, .btn-chvr #chvr-dro {
+    color: #901C1C;
   }
 }
-
-.btn-ferme--carous {
-  position: absolute;
-  right: -80px;
-  top: 35px;
-  width: 50px;
-  height: 50px;
-  border: none;
-  background-color: white;
-}
-.btn-ferme--carous::before {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 54px;
-  height: 5px;
-  left: 0;
-  transform: rotate(-45deg);
-  background-color: #901C1C;
-}
-.btn-ferme--carous::after {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 54px;
-  height: 5px;
-  left: 0;
-  transform: rotate(45deg);
-  background-color: #901C1C;
-}
-@media all and (max-width: 1024px) {
-  .btn-ferme--carous {
-    position: absolute;
-    right: -38px;
-    top: 10px;
-    width: 30px;
-    height: 30px;
-    border: none;
-    background-color: white;
-  }
-  .btn-ferme--carous::before {
-    content: "";
-    display: block;
-    position: absolute;
-    width: 32px;
-    height: 4px;
-    left: 0;
-    transform: rotate(-45deg);
-    background-color: #901C1C;
-  }
-  .btn-ferme--carous::after {
-    content: "";
-    display: block;
-    position: absolute;
-    width: 32px;
-    height: 4px;
-    left: 0;
-    transform: rotate(45deg);
-    background-color: #901C1C;
+@media all and (max-width: 599px) and (max-width: 599px) {
+  .btn-chvr #chvr-gau, .btn-chvr #chvr-dro {
+    font-size: 2em;
   }
 }
 
@@ -531,22 +582,22 @@ ul {
   align-items: center;
 }
 .modale-carrous__liste {
-  width: 70%;
+  max-width: 70%;
 }
 .modale-carrous__liste li {
-  display: block;
   position: relative;
   color: #901C1C;
 }
 .modale-carrous__liste img {
   width: 100%;
+  max-height: 80vh;
   object-fit: contain;
   border-radius: 5px;
 }
 .modale-carrous__liste figcaption {
   font-size: 1.5em;
 }
-@media all and (max-width: 1024px) {
+@media all and (max-width: 599px) {
   .modale-carrous__liste figcaption {
     font-size: 0.875em;
   }
@@ -555,6 +606,7 @@ ul {
 .modale-contact {
   display: none;
   position: fixed;
+  overflow: scroll;
   background-color: white;
   bottom: 0;
   top: 0;

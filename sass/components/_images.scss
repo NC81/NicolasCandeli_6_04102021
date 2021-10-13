@@ -1,4 +1,4 @@
-// Image de présentation
+// Photo de présentation
 .img-fiche {
   display: block;
   border-radius: 50%;
@@ -19,7 +19,7 @@
   }
 }
 
-// Photos et vidéos de la galerie avec leur description
+// Photos et vidéos de la galerie
 .galerie-fig {
   margin-top: 30px;
   width: 32%;
@@ -45,7 +45,7 @@
   &__descr {
     display: flex;
     justify-content: space-between;
-    color: $clr-primaire;
+    color: $clr-pri;
     margin-top: 3px;
     h2 {
       font-size: 1.5em;

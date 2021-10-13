@@ -14,14 +14,14 @@
     }
     > h2 {
       font-size: 2.25em;
-      color: $clr-secondaire;
+      color: $clr-sec;
       text-align: center;
     }
   }
   &__lieu {
     font-size: 0.813em;
     text-align: center;
-    color: $clr-primaire;
+    color: $clr-pri;
   }
   &__citation {
     font-size: 0.813em;
@@ -49,7 +49,7 @@
 .fiche-pho {
   display: flex;
   justify-content: space-between;
-  background-color: $clr-quaternaire;
+  background-color: $clr-qua;
   margin-top: 40px;
   padding: 56px 50px;
   @include tab-max {
@@ -61,14 +61,14 @@
   }
   h1 {
     font-size: 4em;
-    color: $clr-secondaire;
+    color: $clr-sec;
     @include tab-max {
       font-size: 2.25em;
     }
   }
   &__lieu {
     font-size: 1.5em;
-    color: $clr-primaire;
+    color: $clr-pri;
     @include tab-max {
       font-size: .813em;
     }

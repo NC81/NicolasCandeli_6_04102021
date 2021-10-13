@@ -2,6 +2,7 @@
 .modale-contact {
   display: none;
   position: fixed;
+  overflow: scroll;
   background-color: white;
   bottom: 0;
   top: 0;
@@ -12,7 +13,7 @@
     max-width: 669px;
     height: 900px;
     margin: 100px auto;
-    background-color: $clr-tertiaire;
+    background-color: $clr-ter;
     border-radius: 5px;
     padding: 18px 35px;
     @include tab-max {

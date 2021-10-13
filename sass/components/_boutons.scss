@@ -1,9 +1,9 @@
 
-// Bouton de base
+// Bouton d'ouverture
 .btn {
   width: 170px;
   line-height: 69px;
-  background-color: $clr-primaire;
+  background-color: $clr-pri;
   border-radius: 5px;
   border: none;
   font-size: 1.125em;
@@ -14,7 +14,7 @@
     font-size: 1.125em;
   }
   &:hover, &:focus {
-    background-color: $clr-secondaire;
+    background-color: $clr-sec;
     color: black;
   }
   &--pho {
@@ -44,6 +44,20 @@
       font-size: 1.125em;
     }
   } 
+}
+
+// Boutons de fermeture des modales
+.btn-ferme--form {
+  @include btn-ferme(white, 28px, 30px);
+  @include tab-max {
+    @include btn-ferme--mini(white, 20px, 30px);
+  }
+}
+.btn-ferme--carous {
+  @include btn-ferme($clr-pri, 0, -80px);
+  @include mob-max {
+    @include btn-ferme--mini($clr-pri, 10px, -50px);
+  }
 }
 
 // Menu déroulant (page photographe)
@@ -80,43 +94,9 @@
 }
 
 // Chevrons du carrousel
-#chvr-gau {
-  position: absolute;
-  left: -64px;
-  top: calc(50% - 64px);
-  &:hover {
-    color: $clr-secondaire; 
-  }
-  @include tab-max {
-    font-size: 2em;
-    left: -30px;
-    top: calc(50% - 32px);
-  }
-}
-#chvr-dro {
-  position: absolute;
-  right: -64px;
-  top: calc(50% - 64px);
-  &:hover {
-    color: $clr-secondaire; 
-  }
-  @include tab-max {
-    font-size: 2em;
-    right: -30px;
-    top: calc(50% - 32px);
-  }
-}
-
-// Boutons de fermeture des modales
-.btn-ferme--form {
-  @include btn-ferme($clr-tertiaire, white, 28px, 30px);
-  @include tab-max {
-    @include btn-ferme--mini($clr-tertiaire, white, 20px, 30px);
-  }
-}
-.btn-ferme--carous {
-  @include btn-ferme(white, $clr-primaire, 35px, -80px);
-  @include tab-max {
-    @include btn-ferme--mini(white, $clr-primaire, 10px, -38px);
+.btn-chvr {
+  @include btn-chevron(96px);
+  @include mob-max {
+    @include btn-chevron(48px);
   }
 }

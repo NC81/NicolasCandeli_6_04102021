@@ -1,0 +1,8 @@
+// Changement de couleur au survol
+@function survol-clr($clr) {
+  @if ($clr == white) {
+    @return $clr-pri; }
+   @if ($clr == $clr-pri) {
+    @return $clr-ter;
+  }
+}

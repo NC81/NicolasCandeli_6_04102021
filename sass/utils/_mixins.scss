@@ -1,31 +1,4 @@
-@mixin tags {
-  font-weight: 500;
-  font-size: 0.75em;
-  color: $clr-primaire;
-  border: solid 0.5px #C4C4C4;
-  border-radius: 11px;
-  padding: 1px 6px 1px 3px;
-  margin: 0 2px;
-  &:hover, &:focus {
-    background-color: $clr-primaire;
-    color: white;
-  } 
-}
-
-@mixin tags($em: 0.75em, $br: 11px) {
-  font-weight: 500;
-  font-size: $em;
-  color: $clr-primaire;
-  border: solid 0.5px #C4C4C4;
-  border-radius: $br;
-  padding: 1px 6px 1px 3px;
-  margin: 0 2px;
-  &:hover, &:focus {
-    background-color: $clr-primaire;
-    color: white;
-  } 
-}
-
+// Responsive
 @mixin mob-max {
   @media all and (max-width: map-get($bkpt, mob)){
     @content;
@@ -38,59 +11,114 @@
   }
 }
 
-@mixin pseudo-btn($clr) {
+// Étiquettes (catégories de photographe)
+@mixin tags {
+  font-weight: 500;
+  font-size: 0.75em;
+  color: $clr-pri;
+  border: solid 0.5px #C4C4C4;
+  border-radius: 11px;
+  padding: 1px 6px 1px 3px;
+  margin: 0 2px;
+  &:hover, &:focus {
+    background-color: $clr-pri;
+    color: white;
+  } 
+}
+
+@mixin tags($em: 0.75em, $br: 11px) {
+  font-weight: 500;
+  font-size: $em;
+  color: $clr-pri;
+  border: solid 0.5px #C4C4C4;
+  border-radius: $br;
+  padding: 1px 6px 1px 3px;
+  margin: 0 2px;
+  &:hover, &:focus {
+    background-color: $clr-pri;
+    color: white;
+  } 
+}
+
+// Barres des boutons de fermeture
+@mixin btn-barre($clr, $deg, $wdt, $hgt) {
   content: "";
   display: block;
   position: absolute;
-  width: 52px;
-  height: 7px;
+  width: $wdt;
+  height: $hgt;
+  left: 7px;
+  top: 22px;
+  transform: rotate($deg);
   background-color: $clr;
-  top: 0;
-  right: 0;
 }
 
-@mixin btn-barre($deg, $wdt, $hgt) {
-  content: "";
-    display: block;
-    position: absolute;
-    width: $wdt;
-    height: $hgt;
-    left: 0;
-    transform: rotate($deg);
-}
-
-@mixin btn-ferme($bg, $clr, $top, $right) {
+// Boutons de fermeture (normal)
+@mixin btn-ferme($clr, $top, $right) {
   position: absolute;
   right: $right;
   top: $top;
-  width: 50px;
-  height: 50px;
+  width: 72px;
+  height: 72px;
   border: none;
-  background-color: $bg;
+  background-color: rgba(255, 255, 255, 0);
   &::before {
-    @include btn-barre(-45deg, 54px, 5px);
-    background-color: $clr;
+    @include btn-barre($clr, -45deg, 54px, 6px);
   }
   &::after {
-    @include btn-barre(45deg, 54px, 5px);
-    background-color: $clr;
+    @include btn-barre($clr, 45deg, 54px, 6px);
+  }
+  &:hover::before, &:hover::after {
+    background-color: survol-clr($clr);
   }
 }
 
-@mixin btn-ferme--mini($bg, $clr, $top, $right) {
+// Boutons de fermeture (petit)
+@mixin btn-ferme--mini($clr, $top, $right) {
   position: absolute;
   right: $right;
   top: $top;
-  width: 30px;
-  height: 30px;
+  width: 48px;
+  height: 48px;
   border: none;
-  background-color: $bg;
+  background-color: rgba(255, 255, 255, 0);
   &::before {
-    @include btn-barre(-45deg, 32px, 4px);
+    @include btn-barre($clr, -45deg, 32px, 4px);
     background-color: $clr;
   }
   &::after {
-    @include btn-barre(45deg, 32px, 4px);
+    @include btn-barre($clr, 45deg, 32px, 4px);
     background-color: $clr;
+  }
+  &:hover::before, &:hover::after {
+    background-color: survol-clr($clr);
+  }
+}
+
+// Chevrons du carrousel
+@mixin btn-chevron($taille) {
+  position: absolute;
+  top: calc(50% - $taille);
+  width: $taille;
+  height: $taille;
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  &--gau {
+    left: -$taille;
+    &:hover #chvr-gau {
+      color: $clr-ter;
+    }
+  }
+  &--dro {
+    right: -$taille;
+    &:hover #chvr-dro {
+      color: $clr-ter;
+    }
+  }
+  #chvr-gau, #chvr-dro {
+    color: $clr-pri;
+    @include mob-max {
+      font-size: 2em;
+    }
   }
 }
