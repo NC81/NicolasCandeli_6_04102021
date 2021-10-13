@@ -1,42 +1,34 @@
 // Modale du carrousel
 .modale-carrous {
-  display: none; 
+  display: flex; 
+  display: none;
   position: fixed;
   bottom: 0;
   top: 0;
   left: 0;
   right: 0;
   background-color: white;
+  justify-content: center;
+  align-items: center;
   &__liste {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 984px;
-    width: 1253px;
-    margin: 100px auto;
+    width: 70%;
+    // max-height: 984px;
+    // max-width: 1253px;
     li {
-    display: block;
-    position: relative;
-    color: $clr-primaire;
+      display: block;
+      position: relative;
+      color: $clr-primaire;
     }
     img {
-    width: 1050px;
-    height: 900px;
-    object-fit: cover;
-    border-radius: 5px;
+      width: 100%;
+      object-fit: contain;
+      border-radius: 5px;
     }
     figcaption {
-    font-size: 1.5em;   
-    }
-    .fa-chevron-left {
-    position: absolute;
-    left: -64px;
-    top: 50%;
-    }
-    .fa-chevron-right {
-    position: absolute;
-    right: -64px;
-    top: 50%
+      font-size: 1.5em;   
+      @include tab-max {
+        font-size: 0.875em;
+      }
     }
   }
 }

@@ -2,16 +2,32 @@
 // Bouton de base
 .btn {
   width: 170px;
-  height: 69px;
+  line-height: 69px;
   background-color: $clr-primaire;
   border-radius: 5px;
   border: none;
   font-size: 1.125em;
   font-weight: 700;
   color: white;
+  @include tab-max {
+    line-height: 35px;
+    font-size: 1.125em;
+  }
   &:hover, &:focus {
     background-color: $clr-secondaire;
     color: black;
+  }
+  &--pho {
+    position: absolute;
+    right: -193px;
+    top: 0;
+    @include tab-max {
+      position: fixed;
+      right: initial;
+      top: initial;
+      bottom: 30px;
+      left: calc(50% - 85px);
+    }
   }
   // Bouton de sélection du menu déroulant
   &--galerie { 
@@ -21,6 +37,12 @@
     font-size: 1.125em;
     text-align: left;
     padding-left: 20px;
+    @include tab-max {
+      top: -5px;
+      width: 145px;
+      height: 35px;
+      font-size: 1.125em;
+    }
   } 
 }
 
@@ -35,24 +57,66 @@
   border-radius: 5px;
   border: none;
   color: white;
-  padding: 10px; 
+  padding: 10px;
+  @include tab-max {
+    top: -5px;
+    width: 145px;
+    height: 110px;
+    padding: 0 10px;
+  } 
   li {
-  font-size: 1.125em;
-  padding-left: 10px;
-  line-height: 50px;
-  font-weight: 700;
+    font-size: 1.125em;
+    padding-left: 10px;
+    line-height: 50px;
+    font-weight: 700;
+    @include tab-max {
+      line-height: 35px
+    }
   }
   :nth-child(2) {
-  border-top: 1px solid white;
-  border-bottom: 1px solid white;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+  }
+}
+
+// Chevrons du carrousel
+#chvr-gau {
+  position: absolute;
+  left: -64px;
+  top: calc(50% - 64px);
+  &:hover {
+    color: $clr-secondaire; 
+  }
+  @include tab-max {
+    font-size: 2em;
+    left: -30px;
+    top: calc(50% - 32px);
+  }
+}
+#chvr-dro {
+  position: absolute;
+  right: -64px;
+  top: calc(50% - 64px);
+  &:hover {
+    color: $clr-secondaire; 
+  }
+  @include tab-max {
+    font-size: 2em;
+    right: -30px;
+    top: calc(50% - 32px);
   }
 }
 
 // Boutons de fermeture des modales
 .btn-ferme--form {
-  @include btn-ferme($clr-tertiaire, white, 28px, 30px)
+  @include btn-ferme($clr-tertiaire, white, 28px, 30px);
+  @include tab-max {
+    @include btn-ferme--mini($clr-tertiaire, white, 20px, 30px);
+  }
 }
-
 .btn-ferme--carous {
-  @include btn-ferme(white, $clr-primaire, 35px , -80px)
+  @include btn-ferme(white, $clr-primaire, 35px, -80px);
+  @include tab-max {
+    @include btn-ferme--mini(white, $clr-primaire, 10px, -38px);
+  }
 }

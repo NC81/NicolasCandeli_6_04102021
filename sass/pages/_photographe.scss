@@ -1,11 +1,11 @@
 // SECTION GALERIE
 // Menu déroulant et Conteneur de la galerie
 .galerie {
-  padding-top: 20px;
+  padding-top: 20px; 
   .galerie-tri {
     position: relative;
     font-size: 1.125em;
-    font-weight: 700;  
+    font-weight: 700;
   }
   .galerie-cont {
     display: flex;
@@ -13,6 +13,10 @@
     flex-wrap: wrap;
     gap: 2%;
     margin-top: 20px;
+    @include mob-max {
+      flex-direction: column;
+      margin-top: 40px;
+    }
   }
 }
 
@@ -29,7 +33,16 @@
   color: black;
   padding: 21px 31px;
   border-radius: 5px 5px 0 0;
+  @include tab-max {
+    bottom: initial;
+    top: 0;
+    z-index: 2;
+    width: 200px;
+    font-size: 1em;
+    padding: 5px 8px;
+    border-radius: 0 0 5px 5px;
+  }
   p {
     font-weight: 500;
-  }    
+  }   
 }

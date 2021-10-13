@@ -9,38 +9,51 @@
   right: 0;
   &__form {
     position: relative;
-    width: 669px;
+    max-width: 669px;
     height: 900px;
     margin: 100px auto;
     background-color: $clr-tertiaire;
     border-radius: 5px;
     padding: 18px 35px;
+    @include tab-max {
+      height: 740px;
+    }
     h1 {
-    font-size: 64px;
-    line-height: 70px;
-    margin-bottom: 28px;
+      font-size: 4em;
+      line-height: 70px;
+      margin-bottom: 28px;
+      padding-right: 35px;
+      @include tab-max {
+        font-size: 2.25em;
+        line-height: 45px;
+      }
     }
     label {
-    font-size: 2.25em;
+      font-size: 2.25em;
+      @include tab-max {
+        font-size: 1.5em;
+      }
     }
     input {
-    width: 100%;
-    line-height: 68px;
-    border: none;
-    border-radius: 5px;
-      &[id=email] {
-        margin-bottom: 10px;
+      width: 100%;
+      line-height: 68px;
+      border: none;
+      border-radius: 5px;
+      margin-bottom: 3px;
+      @include tab-max {
+        line-height: 52px;
+        margin: 5px 0 10px 0;
       }
     }
     textarea {
-    width: 100%;
-    height: 170px;
-    border: none;
-    margin: 5px 0 26px 0;
+      width: 100%;
+      height: 170px;
+      border: none;
+      margin: 5px 0 26px 0;
     }
     .invis {
-    position: absolute;
-    top: 10000px;
+      position: absolute;
+      top: 10000px;
     }
   }
 }

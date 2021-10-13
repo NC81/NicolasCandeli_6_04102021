@@ -1,22 +1,46 @@
 // Image de présentation
-.img-present {
+.img-fiche {
   display: block;
   border-radius: 50%;
   object-fit: cover;
-  &--200 {
-    width: 200px;
-    height: 200px;
+  width: 200px;
+  height: 200px;
+  &--pho {
+    @include tab-max {
+      position: absolute;
+      right: 5%;
+      width: 125px;
+      height: 125px;
+    }
+    @include mob-max {
+      width: 100px;
+      height: 100px;
+    }
   }
 }
 
 // Photos et vidéos de la galerie avec leur description
 .galerie-fig {
   margin-top: 30px;
+  width: 32%;
+  max-width: 350px;
+  @include tab-max {
+    margin-top: 10px;
+    width: 48%;
+    max-width: 48%;
+  }
+  @include mob-max {
+    width: 100%;
+    max-width: 100%;
+  }
   img {
-    width: 350px;
+    width: 100%;
     height: 300px;
     object-fit: cover;
     border-radius: 5px;
+    @include mob-max {
+      height: 190px;
+    }
   }
   &__descr {
     display: flex;
@@ -25,10 +49,16 @@
     margin-top: 3px;
     h2 {
       font-size: 1.5em;
+      @include tab-max {
+        font-size: 0.875em;
+      }
     }
     p {
       font-size: 1.5em;
       font-weight: 500;
+      @include tab-max {
+        font-size: 0.875em;
+      }
     }
   }
 }

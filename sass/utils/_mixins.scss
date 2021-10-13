@@ -33,7 +33,7 @@
 }
   
 @mixin tab-max {
-  @media all and (min-width: map-get($bkpt, tab)){
+  @media all and (max-width: map-get($bkpt, tab)){
     @content;
   }
 }
@@ -49,12 +49,12 @@
   right: 0;
 }
 
-@mixin btn-barre($deg) {
+@mixin btn-barre($deg, $wdt, $hgt) {
   content: "";
     display: block;
     position: absolute;
-    width: 54px;
-    height: 5px;
+    width: $wdt;
+    height: $hgt;
     left: 0;
     transform: rotate($deg);
 }
@@ -68,11 +68,29 @@
   border: none;
   background-color: $bg;
   &::before {
-    @include btn-barre(-45deg);
+    @include btn-barre(-45deg, 54px, 5px);
     background-color: $clr;
   }
   &::after {
-    @include btn-barre(45deg);
+    @include btn-barre(45deg, 54px, 5px);
+    background-color: $clr;
+  }
+}
+
+@mixin btn-ferme--mini($bg, $clr, $top, $right) {
+  position: absolute;
+  right: $right;
+  top: $top;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: $bg;
+  &::before {
+    @include btn-barre(-45deg, 32px, 4px);
+    background-color: $clr;
+  }
+  &::after {
+    @include btn-barre(45deg, 32px, 4px);
     background-color: $clr;
   }
 }

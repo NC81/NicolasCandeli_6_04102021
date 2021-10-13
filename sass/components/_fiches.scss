@@ -1,6 +1,12 @@
 // Fiche de la page d'accueil
-.fiche {
+.fiche-acc {
   margin-bottom: 50px;
+  @include tab-max {
+    width: 48%;
+  }
+  @include mob-max {
+    width: auto;
+  }
   &__lien {
     display: block;
     img {
@@ -40,38 +46,51 @@
 }
 
 // Fiche de la page du photographe
-.present {
+.fiche-pho {
   display: flex;
   justify-content: space-between;
   background-color: $clr-quaternaire;
   margin-top: 40px;
   padding: 56px 50px;
-  &-info {
+  @include tab-max {
+    background-color: white;
+    padding: 0;
+  }
+  > div {
     position: relative;
-    h1 {
-      font-size: 4em;
-      color: $clr-secondaire;
-    }
-    &__lieu {
-      font-size: 1.5em;
-      color: $clr-primaire;
-    }
-    &__citation {
-      font-size: 1.125em;
-      color: #525252;
-      margin-top: 18px;
-    }
-    &__liste {
-      display: flex;
-      margin-top: 20px;
-      a {
-        @include tags(1.125em, 12px);
-      }
-    }
-    button {
-      position: absolute;
-      right: -193px;
-      top: 0;
+  }
+  h1 {
+    font-size: 4em;
+    color: $clr-secondaire;
+    @include tab-max {
+      font-size: 2.25em;
     }
   }
+  &__lieu {
+    font-size: 1.5em;
+    color: $clr-primaire;
+    @include tab-max {
+      font-size: .813em;
+    }
+  }
+  &__citation {
+    font-size: 1.125em;
+    color: #525252;
+    margin-top: 18px;
+    @include tab-max {
+      font-size: .813em;
+      margin-top: 6px;
+      color: #757575;
+    }
+  }
+  &__liste {
+    display: flex;
+    margin-top: 20px;
+    a {
+      @include tags(1.125em, 12px);
+      @include tab-max {
+        @include tags(0.813em, 11px);
+      }
+    }
+  }    
 }
