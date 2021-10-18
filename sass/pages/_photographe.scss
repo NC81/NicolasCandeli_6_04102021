@@ -33,6 +33,7 @@
   color: black;
   padding: 21px 31px;
   border-radius: 5px 5px 0 0;
+  font-weight: 500;
   @include tab-max {
     bottom: initial;
     top: 0;
@@ -43,6 +44,9 @@
     border-radius: 0 0 5px 5px;
   }
   p {
+    font-weight: 500;
+  }
+  &__prix {
     font-weight: 500;
   }   
 }

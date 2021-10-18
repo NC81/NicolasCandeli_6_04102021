@@ -5,12 +5,15 @@
   object-fit: cover;
   width: 200px;
   height: 200px;
+  flex-shrink: 0;
   &--pho {
+    margin-left: 210px;
     @include tab-max {
-      position: absolute;
+      // position: absolute;
       right: 5%;
       width: 125px;
       height: 125px;
+      margin-left: 10px;
     }
     @include mob-max {
       width: 100px;
