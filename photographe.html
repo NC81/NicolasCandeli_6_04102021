@@ -42,15 +42,10 @@
                         <h1></h1>
                         <p class="fiche-pho__lieu"></p>
                         <p class="fiche-pho__citation"></p>
-                        <ul class="fiche-pho__liste">
-                            <!-- <li><a href="#">#Portrait</a></li>
-                            <li><a href="#">#Travel</a></li>
-                            <li><a href="#">#Animals</a></li>
-                            <li><a href="#">#Events</a></li> -->
-                        </ul>
+                        <ul class="fiche-pho__liste"></ul>
                         <button class="btn btn--pho">Contactez-moi</button>
                     </div>
-                    <img class="img-fiche img-fiche--pho" />
+                    <img class="img-fiche img-fiche--pho" src="espace-réservé" alt="Photo du photographe" />
                 </article>
 
                 <section class="galerie">
@@ -63,85 +58,29 @@
                         </ul>    
                     </div>
                     <div class="galerie-cont">
-                        <figure class="galerie-fig">
-                            <a aria-label="Ouvre la fenêtre d'aggrandissement">
-                                <img src="./images/galeries/Mimi/Animals_Rainbow.jpg" alt="Un oiseau aux couleurs vives est posée sur une branche" />
-                            </a>
-                            <figcaption class="galerie-fig__descr">
-                                <h2>Arc-en-ciel</h2>
-                                <p>12 <i class="fas fa-heart"></i></p>
-                            </figcaption>
-                        </figure>
-                        <figure class="galerie-fig">
-                            <a aria-label="Ouvre la fenêtre d'aggrandissement">
-                                <img src="./images/galeries/Mimi/Animals_Rainbow.jpg" alt="Un oiseau aux couleurs vives est posée sur une branche" />
-                            </a>
-                            <figcaption class="galerie-fig__descr">
-                                <h2>Arc-en-ciel</h2>
-                                <p>12 <i class="fas fa-heart"></i></p>
-                            </figcaption>
-                        </figure>
-                        <figure class="galerie-fig">
-                            <a aria-label="Ouvre la fenêtre d'aggrandissement">
-                                <img src="./images/galeries/Mimi/Animals_Rainbow.jpg" alt="Un oiseau aux couleurs vives est posée sur une branche" />
-                            </a>
-                            <figcaption class="galerie-fig__descr">
-                                <h2>Arc-en-ciel</h2>
-                                <p>12 <i class="fas fa-heart"></i></p>
-                            </figcaption>
-                        </figure>
-                        <figure class="galerie-fig">
-                            <a aria-label="Ouvre la fenêtre d'aggrandissement">
-                                <img src="./images/galeries/Mimi/Animals_Rainbow.jpg" alt="Un oiseau aux couleurs vives est posée sur une branche" />
-                            </a>
-                            <figcaption class="galerie-fig__descr">
-                                <h2>Arc-en-ciel</h2>
-                                <p>12 <i class="fas fa-heart"></i></p>
-                            </figcaption>
-                        </figure>
-                        <figure class="galerie-fig">
-                            <a aria-label="Ouvre la fenêtre d'aggrandissement">
-                                <img src="./images/galeries/Mimi/Animals_Rainbow.jpg" alt="Un oiseau aux couleurs vives est posée sur une branche" />
-                            </a>
-                            <figcaption class="galerie-fig__descr">
-                                <h2>Arc-en-ciel</h2>
-                                <p>12 <i class="fas fa-heart"></i></p>
-                            </figcaption>
-                        </figure>
-                        <figure class="galerie-fig">
-                            <a aria-label="Ouvre la fenêtre d'aggrandissement">
-                                <img src="./images/galeries/Mimi/Animals_Rainbow.jpg" alt="Un oiseau aux couleurs vives est posée sur une branche" />
-                            </a>
-                            <figcaption class="galerie-fig__descr">
-                                <h2>Arc-en-ciel</h2>
-                                <p>12 <i class="fas fa-heart"></i></p>
-                            </figcaption>
-                        </figure>
                     </div>         
                 </section>
               
-                <div class="modale-contact" aria-hidden="true" role=”dialog” aria-describedby="titre-form">
+                <div class="modale-contact" aria-hidden="true" aria-describedby="titre-form">
                     <form class="modale-contact__form">
-                        <h1 id="titre-form">Contactez-moi<br />
-                            Mimi Keel
-                        </h1>
+                        <h1 id="titre-form"></h1>
                         <p>
                             <label for="prenom" id="label-prenom">Prénom</label>
-                            <input type="text" name="prenom" id="prenom" aria-labelledby="label-prenom" aria-describedby="format-nom-prenom" min="2" max="50" required />
+                            <input type="text" name="prenom" id="prenom" aria-labelledby="label-prenom" aria-describedby="format-nom-prenom" required />
                             <span class="invis" id="format-nom-prenom">Le nombre de caractère doit être compris entre 2 et 50</span>
                         </p>
                         <p>
                             <label for="nom" id="label-nom">Nom</label>
-                            <input type="text" name="nom" id="nom" aria-labelledby="label-nom" aria-describedby="format-nom-prenom" min="2" max="50" required />
+                            <input type="text" name="nom" id="nom" aria-labelledby="label-nom" aria-describedby="format-nom-prenom" required />
                         </p>
                         <p>
                             <label for="email" id="label-email">Email</label>
-                            <input type="text" name="email" id="email" aria-labelledby="label-email" aria-describedby="format-email" min="5" max="75" required />
+                            <input type="text" name="email" id="email" aria-labelledby="label-email" aria-describedby="format-email" required />
                             <span class="invis" id="format-email">Veuillez entrer un email valide</span>
                         </p>
                         <p>
-                            <label for="message" id="label-email">Votre message</label>
-                            <textarea name="message" id="message" aria-labelledby="label-email" aria-describedby="format-message" min="5" max="1000" required></textarea>
+                            <label for="message" id="label-message">Votre message</label>
+                            <textarea name="message" id="message" aria-labelledby="label-email" aria-describedby="format-message" required></textarea>
                             <span class="invis" id="format-message">Veuillez entrer le message à envoyer</span>
                         </p>
                         <button class="btn btn-envoi">Envoyer</button>
@@ -149,15 +88,12 @@
                     </form>
                 </div>
                 
-                <div class="modale-carrous" aria-hidden="true" role=”dialog”>
+                <div class="modale-carrous" aria-hidden="true">
                     <ul class="modale-carrous__liste" aria-label="La sélection du photographe">
                         <li>
-                            <figure>
-                                <img src="./images/galeries/Mimi/Animals_Rainbow.jpg" alt="Un oiseau aux couleurs vives est posée sur une branche" />
-                                <figcaption>Arc-en-cie</figcaption>
-                            </figure>
+                            <figure></figure>
                             <button class="btn-chvr btn-chvr--gau"><i id="chvr-gau" class="fas fa-chevron-left fa-4x"></i></button>
-                            <button class="btn-chvr btn-chvr--dro"><i id="chvr-dro" class="fas fa-chevron-right fa-4x"></i></i></button>
+                            <button class="btn-chvr btn-chvr--dro"><i id="chvr-dro" class="fas fa-chevron-right fa-4x"></i></button>
                             <button class="btn-ferme--carous"></button>
                         </li>
                     </ul>
@@ -166,9 +102,8 @@
             </main>
 
         </div>
+    <script src="fiche-pho.js"></script>
+    <script src="modales.js"></script>
     </body>
-    <script type="text/javascript" src="variables.js"></script>
-    <script type="text/javascript" src="modales.js"></script>
-    <script type="text/javascript" src="fiche-pho.js"></script>
 
 </html>

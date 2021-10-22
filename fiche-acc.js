@@ -1,11 +1,11 @@
-// Générateur de contenu JSON pour la page accueil
-function afficherPageAccueil() {
+// Affiche le contenu JSON pour la page d'accueil
+let affichePageAccueil = () => {
   fetch("FishEyeData.json").then(function(res) {
-      if (res.ok) {
-        console.log("ça marche ACC");
-        return res.json();
-      }
-    })
+    if (res.ok) {
+      console.log("ça marche ACC");
+      return res.json();
+    }
+  })
   .then(function(data) {
     // Génération de fiche pour chaque photographe
     for(let i=0; i < data.photographers.length; i++) {
@@ -59,26 +59,22 @@ function afficherPageAccueil() {
       nouveauA.innerHTML = "#" + data.photographers[i].tags[t];
       }
     }
+    photographeId();
   })
   .catch(function(err) {
   console.log("erreur fetch(fiche-acc)");
   });
 }
 
-afficherPageAccueil();
+affichePageAccueil();
 
 // Évènement de clic (pour accèder à la page des photographes)
-const photographeId = function (){
+let photographeId = function (){
   const liensPhotographePageAccueil = document.querySelectorAll(".fiche-acc__lien");
-  console.log("évènement prêt");
   for(let i=0; i < liensPhotographePageAccueil.length; i++) {
     liensPhotographePageAccueil[i].addEventListener("click", function() {
-    console.log("ID(page-acc)", liensPhotographePageAccueil[i].getAttribute("data-id"));
+    // console.log("ID(page-acc)", liensPhotographePageAccueil[i].getAttribute("data-id"));
     sessionStorage.setItem("id", liensPhotographePageAccueil[i].getAttribute("data-id"));
     })
   }
 }
-
-setTimeout (function() {
-  photographeId()
-}, 100)

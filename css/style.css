@@ -341,55 +341,59 @@ ul {
   }
 }
 
-.galerie-fig {
+.fig-img, .fig-vid {
   margin-top: 30px;
   width: 32%;
   max-width: 350px;
 }
 @media all and (max-width: 1024px) {
-  .galerie-fig {
+  .fig-img, .fig-vid {
     margin-top: 10px;
     width: 48%;
     max-width: 48%;
   }
 }
 @media all and (max-width: 599px) {
-  .galerie-fig {
+  .fig-img, .fig-vid {
     width: 100%;
     max-width: 100%;
   }
 }
-.galerie-fig img {
+.fig-img a, .fig-vid a {
+  display: block;
+}
+.fig-img img, .fig-img video, .fig-vid img, .fig-vid video {
   width: 100%;
   height: 300px;
   object-fit: cover;
   border-radius: 5px;
 }
 @media all and (max-width: 599px) {
-  .galerie-fig img {
+  .fig-img img, .fig-img video, .fig-vid img, .fig-vid video {
     height: 190px;
   }
 }
-.galerie-fig__descr {
+.fig-img figcaption, .fig-vid figcaption {
   display: flex;
   justify-content: space-between;
   color: #901C1C;
   margin-top: 3px;
 }
-.galerie-fig__descr h2 {
+.fig-img h2, .fig-vid h2 {
+  max-width: 270px;
   font-size: 1.5em;
 }
 @media all and (max-width: 1024px) {
-  .galerie-fig__descr h2 {
+  .fig-img h2, .fig-vid h2 {
     font-size: 0.875em;
   }
 }
-.galerie-fig__descr p {
+.fig-img p, .fig-vid p {
   font-size: 1.5em;
   font-weight: 500;
 }
 @media all and (max-width: 1024px) {
-  .galerie-fig__descr p {
+  .fig-img p, .fig-vid p {
     font-size: 0.875em;
   }
 }
@@ -592,7 +596,7 @@ ul {
   position: relative;
   color: #901C1C;
 }
-.modale-carrous__liste img {
+.modale-carrous__liste img, .modale-carrous__liste video {
   width: 100%;
   max-height: 80vh;
   object-fit: contain;
