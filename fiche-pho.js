@@ -50,7 +50,8 @@ let affichePagePhotographe = () => {
     remplitFiche();
     remplitGalerie();
     filtreMedias();
-    remplitCaroussel();  /*global remplitCaroussel */
+    remplitcarrousel();  /*global remplitcarrousel */
+    filtreParMenu();  /*global filtreParMenu */
   })
   .catch(function(err) {
     console.log("erreur fetch(fiche-pho):", err);
@@ -155,14 +156,16 @@ class image {
     this.creeImage = () => {
       const nouveauImage = document.createElement("img");
       const titre = document.querySelectorAll(".fig-img h2");
-      const aime = document.querySelectorAll(".fig-img p span");
+      const cœursNombre = document.querySelectorAll(".fig-img p span");
       nouveauFigure.firstChild.appendChild(nouveauImage)
       const imageGalerie = document.querySelectorAll(".fig-img img");
 
       titre[m].textContent = images[m].title;
-      aime[m].textContent = images[m].likes + " ";
+      cœursNombre[m].textContent = images[m].likes + " ";
       imageGalerie[m].src = "./images/galeries/" + changeNomEnPrenom(photographe[0].name) + "/" + images[m].image;
       imageGalerie[m].parentNode.parentNode.setAttribute("data-tag", "#" + images[m].tags);
+      imageGalerie[m].parentNode.parentNode.setAttribute("data-date", images[m].date);
+      imageGalerie[m].parentNode.parentNode.setAttribute("data-id", images[m].id);
     }
   }
 }
@@ -173,14 +176,16 @@ class video {
     this.creeVideo = () => {
       const nouveauVideo = document.createElement("video");
       const titre = document.querySelectorAll(".fig-vid h2");
-      const aime = document.querySelectorAll(".fig-vid p span");
+      const cœursNombre = document.querySelectorAll(".fig-vid p span");
       nouveauFigure.firstChild.appendChild(nouveauVideo);
       const videoGalerie = document.querySelectorAll(".fig-vid video");
 
       titre[m].textContent = videos[m].title;
-      aime[m].textContent = videos[m].likes + " ";
+      cœursNombre[m].textContent = videos[m].likes + " ";
       videoGalerie[m].src = "./images/galeries/" + changeNomEnPrenom(photographe[0].name) + "/" + videos[m].video;
       videoGalerie[m].parentNode.parentNode.setAttribute("data-tag", "#" + videos[m].tags);
+      videoGalerie[m].parentNode.parentNode.setAttribute("data-date", videos[m].date);
+      videoGalerie[m].parentNode.parentNode.setAttribute("data-id", videos[m].id);
     }
   }
 }

@@ -160,7 +160,7 @@ ul {
   }
 }
 
-.btn-ferme--carous {
+.btn-ferme--carrou {
   position: absolute;
   right: -80px;
   top: 0;
@@ -169,7 +169,7 @@ ul {
   border: none;
   background-color: rgba(255, 255, 255, 0);
 }
-.btn-ferme--carous::before {
+.btn-ferme--carrou::before {
   content: "";
   display: block;
   position: absolute;
@@ -182,7 +182,7 @@ ul {
           transform: rotate(-45deg);
   background-color: #901C1C;
 }
-.btn-ferme--carous::after {
+.btn-ferme--carrou::after {
   content: "";
   display: block;
   position: absolute;
@@ -195,11 +195,11 @@ ul {
           transform: rotate(45deg);
   background-color: #901C1C;
 }
-.btn-ferme--carous:hover::before, .btn-ferme--carous:hover::after {
+.btn-ferme--carrou:hover::before, .btn-ferme--carrou:hover::after {
   background-color: #DB8876;
 }
 @media all and (max-width: 599px) {
-  .btn-ferme--carous {
+  .btn-ferme--carrou {
     position: absolute;
     right: -50px;
     top: 10px;
@@ -208,7 +208,7 @@ ul {
     border: none;
     background-color: rgba(255, 255, 255, 0);
   }
-  .btn-ferme--carous::before {
+  .btn-ferme--carrou::before {
     content: "";
     display: block;
     position: absolute;
@@ -222,7 +222,7 @@ ul {
     background-color: #901C1C;
     background-color: #901C1C;
   }
-  .btn-ferme--carous::after {
+  .btn-ferme--carrou::after {
     content: "";
     display: block;
     position: absolute;
@@ -236,7 +236,7 @@ ul {
     background-color: #901C1C;
     background-color: #901C1C;
   }
-  .btn-ferme--carous:hover::before, .btn-ferme--carous:hover::after {
+  .btn-ferme--carrou:hover::before, .btn-ferme--carrou:hover::after {
     background-color: #DB8876;
   }
 }
