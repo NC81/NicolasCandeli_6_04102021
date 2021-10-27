@@ -12,7 +12,7 @@
     </head>
     
     <body>
-        <div class="bloc-page">
+        <div class="bloc-page" aria-hidden="false">
             
             <header class="header" role="banner">
                 <a aria-label="FishEye - Page d'accueil" href="index.html">
@@ -33,7 +33,7 @@
             <main class="pho-main">
                 
                 <aside class="infosup">
-                    <p>297081 <i class="fas fa-heart"></i></p>
+                    <p><span class="infosup__cœurs"></span> <i class="fas fa-heart"></i></p>
                     <p><span class="infosup__prix">300</span>€ / jour</p>
                 </aside>
            
@@ -61,7 +61,7 @@
                     </div>         
                 </section>
               
-                <div class="modale-contact" aria-hidden="true" aria-describedby="titre-form">
+                <div class="modale-contact" aria-hidden="true" aria-labelledby="titre-form" role="dialog">
                     <form class="modale-contact__form">
                         <h1 id="titre-form"></h1>
                         <p>
@@ -88,22 +88,21 @@
                     </form>
                 </div>
                 
-                <div class="modale-carrous" aria-hidden="true">
-                    <ul class="modale-carrous__liste" aria-label="La sélection du photographe">
-                        <li>
-                            <figure></figure>
-                            <button class="btn-chvr btn-chvr--gau"><i id="chvr-gau" class="fas fa-chevron-left fa-4x"></i></button>
-                            <button class="btn-chvr btn-chvr--dro"><i id="chvr-dro" class="fas fa-chevron-right fa-4x"></i></button>
-                            <button class="btn-ferme--carrou"></button>
-                        </li>
-                    </ul>
+                <div class="modale-carrous" aria-label="Vue aggrandissante de l'image" aria-hidden="true" role="dialog">
+                    <div class="modale-carrous__cont" aria-label="La sélection du photographe">
+                        <figure></figure>
+                        <button class="btn-chvr btn-chvr--gau"><i id="chvr-gau" class="fas fa-chevron-left fa-4x"></i></button>
+                        <button class="btn-chvr btn-chvr--dro"><i id="chvr-dro" class="fas fa-chevron-right fa-4x"></i></button>
+                        <button class="btn-ferme--carrou"></button>
+                    </div>
                 </div>
             
             </main>
 
         </div>
-    <script src="fiche-pho.js"></script>
-    <script src="modales.js"></script>
+        <script src="tableaux.js"></script>
+        <script src="fiche-pho.js"></script>
+        <script src="modales.js"></script>
     </body>
 
 </html>

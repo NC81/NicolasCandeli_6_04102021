@@ -1,3 +1,6 @@
+let images = []; /* Recense toutes ses images */
+let videos = []; /* Recense toutes ses vidéos */
+
 // DOM
 const nom = document.querySelector(".fiche-pho h1");
 const lieu = document.querySelector(".fiche-pho__lieu");
@@ -10,12 +13,6 @@ const galerie = document.querySelector(".galerie-cont");
 // URL
 const parametreID = new URLSearchParams(window.location.search);
 
-// Tableaux 
-const photographe = []; /* Recense toutes les informations concernant le photographe (JSON: liste "photographers") */
-const medias = []; /* Recense toutes les informations concernant ses créations (JSON: liste "media") */
-const images = []; /* Recense toutes ses images */
-const videos = []; /* Recense toutes ses vidéos */
-
 // Affiche le contenu JSON pour la page des photographes
 let affichePagePhotographe = () => {
   fetch("FishEyeData.json").then(function(res) {
@@ -27,31 +24,34 @@ let affichePagePhotographe = () => {
   .then(function(data) {
     // Exploitation du contenu JSON du photographe
     console.log("id courant:", idCourant())
+    // Copie du tableau JSON "photographers"  
     for (let i=0; i < data.photographers.length; i++) {
       if (data.photographers[i].id == idCourant()) {
         photographe.push(data.photographers[i]);  /* Enregistrement des informations dédiées à la fiche du photographe */
-        sessionStorage.setItem("nom", data.photographers[i].name); 
       }
     }
+    // Copie du tableau JSON "media"  
     for (let i=0; i < data.media.length; i++) {
       if (data.media[i].photographerId == idCourant()) {
         medias.push(data.media[i]); /* Enregistrement des ressources médias du photographe */
       }
     }
-    for (let i=0; i < medias.length; i++) {   
-      if (trouveImages("" + medias[i].image)) {
-        images.push(medias[i]); /* Enregistrement des images du photographe */
-      }
-      if (trouveVideos("" + medias[i].video)) {
-        videos.push(medias[i]); /* Enregistrement des vidéos du photographe */
-      }
-    }
+    // Appel des tableaux d'images et de vidéos 
+    images = creeTableauImages(); 
+    videos = creeTableauVideos();
+   
     // Appel des fonctions affichant les différents types de contenu
     remplitFiche();
     remplitGalerie();
     filtreMedias();
-    remplitcarrousel();  /*global remplitcarrousel */
-    filtreParMenu();  /*global filtreParMenu */
+    afficheCarrousel();
+    
+    // Appel d'un tableau de médias pour le menu de filtrage
+    creeTableauxMediasTriables(); 
+    // Appel de la fonction permettant au menu de filtrer les médias  
+    filtreParMenu(); 
+    // Appel de la fonction permettant d'ajouter un "like" 
+    ajoutCœurs();
   })
   .catch(function(err) {
     console.log("erreur fetch(fiche-pho):", err);
@@ -70,7 +70,7 @@ let idCourant = () => {
 } 
 
 // Fonctions permettant de détecter le type de contenu (images et vidéos)
-let trouveImages = (fichier) => {
+let trouveImages = (fichier) => { 
   if (fichier.split('.').pop() == "jpg") {
     return true;
   }
@@ -113,7 +113,7 @@ let remplitFiche = () => {
 // Fonction remplissant la galerie du photographe
 let m;
 let remplitGalerie = () => {
-  const nouvelleUsine = new usine();
+  const nouvelleUsine = new Usine();
   // Création de la structure HTML et exploitation du contenu JSON pour chaque image  
   for (m=0; m < images.length; m++) {
     const nouvelleImage = nouvelleUsine.creeFigure("image");
@@ -128,22 +128,22 @@ let remplitGalerie = () => {
 
 // Usine fabriquant une base commune pour les images et des vidéos
 let nouveauFigure; 
-class usine {
+class Usine {
   constructor() {
     this.creeFigure = (type) => {
       nouveauFigure = document.createElement("figure");
       galerie.appendChild(nouveauFigure);
-      nouveauFigure.innerHTML = "<a></a><figcaption><h2></h2><p><span></span><i></i></p></figcaption>"
+      nouveauFigure.innerHTML = "<a></a><figcaption><h2></h2><p><span></span><i></i></p></figcaption>";
       nouveauFigure.lastChild.lastChild.lastChild.setAttribute("class", "fas fa-heart");
-
+      nouveauFigure.lastChild.lastChild.firstChild.setAttribute("class", "cœurs-nombre");
       let figure;
       if (type === "image") {
         nouveauFigure.setAttribute("class", "fig-img");
-        figure = new image();
+        figure = new NouvelleImage();
       }
       if (type === "video") {
         nouveauFigure.setAttribute("class", "fig-vid");
-        figure = new video();
+        figure = new NouvelleVideo();
       }
       return figure;
     }    
@@ -151,7 +151,7 @@ class usine {
 }
 
 // Instructions suppléméntaires pour l'affichage des images
-class image {
+class NouvelleImage {
   constructor() {
     this.creeImage = () => {
       const nouveauImage = document.createElement("img");
@@ -171,7 +171,7 @@ class image {
 }
 
 // Instructions suppléméntaires pour l'affichage des vidéos
-class video {
+class NouvelleVideo {
   constructor() {
     this.creeVideo = () => {
       const nouveauVideo = document.createElement("video");
@@ -198,7 +198,7 @@ let filtreMedias = () => {
     li.addEventListener("click", () => {
       etiquette = li.firstChild.textContent;
       afficheMedias();
-    })
+    });
   }
 }
 
@@ -214,3 +214,35 @@ let afficheMedias = () => {
     }
   }
 }
+
+// Fonction affichant la somme des "likes" 
+let afficheCœursSommeTotale = () => {
+  let somme = 0;
+  let cœursCompteNombre;
+  const cœursCompte = document.querySelectorAll(".cœurs-nombre");
+  const cœursSommeTotale = document.querySelector(".infosup__cœurs");
+  for (let c of cœursCompte) {
+    cœursCompteNombre = parseInt(c.textContent);
+    somme += cœursCompteNombre;
+  }
+  cœursSommeTotale.textContent = somme + " ";
+}
+
+// Fonction permettant d'ajouter un "like"
+let ajoutCœurs = () => {
+const zonesCœurs = document.querySelectorAll("figcaption p");
+let cœursSomme;
+  for (let z of zonesCœurs) {
+    z.addEventListener("click", () => {
+      console.log("ça augmente");
+      cœursSomme = parseInt(z.firstChild.textContent);
+      cœursSomme++;
+      z.firstChild.textContent = cœursSomme + " ";
+        afficheCœursSommeTotale();
+    });
+  }
+  afficheCœursSommeTotale();
+}
+
+/* global photographe medias creeTableauImages creeTableauVideos afficheCarrousel filtreParMenu creeTableauxMediasTriables */
+/* exported trouveImages trouveVideos */

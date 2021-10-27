@@ -38,6 +38,7 @@
   }
   a {
     display: block;
+    cursor: pointer;
   }
   img, video {
     width: 100%;
@@ -56,16 +57,19 @@
   }
   h2 {
     max-width: 270px;
-    font-size: 1.5em;
+    font-size: 1em;
     @include tab-max {
       font-size: 0.875em;
     }
   }
   p {
-    font-size: 1.5em;
-    font-weight: 500;
+    font-size: 1em;
+    cursor: pointer;
     @include tab-max {
       font-size: 0.875em;
     }
+  }
+  span {
+    font-weight: 500;
   }
 }
