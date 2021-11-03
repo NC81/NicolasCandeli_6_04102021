@@ -1,0 +1,52 @@
+// Vignette des photographes (page d'accueil)
+.vignette {
+    margin-bottom: 50px;
+    @include tab-max {
+      width: 48%;
+    }
+    @include mob-max {
+      width: auto;
+    }
+    &__lien {
+      display: block;
+      img {
+        margin: 0 auto;
+      }
+      > h2 {
+        font-size: 2.25em;
+        color: $clr-sec;
+        text-align: center;
+      }
+    // &:hover > h2, &:focus > h2 {
+    //   color: white;
+    //   background: $clr-sec;
+    //   border-radius: 5px;
+    // }
+    }
+    p:nth-of-type(1) {
+      font-size: 0.813em;
+      text-align: center;
+      color: $clr-pri;
+    }
+    p:nth-of-type(2) {
+      font-size: 0.813em;
+      text-align: center;
+      margin-top: 3px;
+    }
+    p:nth-of-type(3) {
+      font-size: 0.563em;
+      text-align: center;
+      color: #757575;
+      margin-top: 3px;
+    }
+    &__liste {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 5px;
+      a {
+        @include tags;
+        cursor: pointer;
+      }
+    }
+  }

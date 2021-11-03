@@ -7,12 +7,13 @@
 
 @import "./components/boutons";
 @import "./components/images";
-@import "./components/fiches";
+@import "./components/vignette";
+@import "./components/fiche";
 
 @import "./layouts/bloc-page";
 @import "./layouts/header";
-@import "./layouts/modale-carrousel";
-@import "./layouts/modale-form";
+@import "./layouts/carrousel";
+@import "./layouts/form";
 
 @import "./pages/accueil";
 @import "./pages/photographe";

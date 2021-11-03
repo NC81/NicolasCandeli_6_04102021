@@ -435,47 +435,47 @@ ul {
   }
 }
 
-.fiche-acc {
+.vignette {
   margin-bottom: 50px;
 }
 @media all and (max-width: 1024px) {
-  .fiche-acc {
+  .vignette {
     width: 48%;
   }
 }
 @media all and (max-width: 599px) {
-  .fiche-acc {
+  .vignette {
     width: auto;
   }
 }
-.fiche-acc__lien {
+.vignette__lien {
   display: block;
 }
-.fiche-acc__lien img {
+.vignette__lien img {
   margin: 0 auto;
 }
-.fiche-acc__lien > h2 {
+.vignette__lien > h2 {
   font-size: 2.25em;
   color: #D3573C;
   text-align: center;
 }
-.fiche-acc p:nth-of-type(1) {
+.vignette p:nth-of-type(1) {
   font-size: 0.813em;
   text-align: center;
   color: #901C1C;
 }
-.fiche-acc p:nth-of-type(2) {
+.vignette p:nth-of-type(2) {
   font-size: 0.813em;
   text-align: center;
   margin-top: 3px;
 }
-.fiche-acc p:nth-of-type(3) {
+.vignette p:nth-of-type(3) {
   font-size: 0.563em;
   text-align: center;
   color: #757575;
   margin-top: 3px;
 }
-.fiche-acc__liste {
+.vignette__liste {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -486,7 +486,7 @@ ul {
           justify-content: center;
   margin-top: 5px;
 }
-.fiche-acc__liste a {
+.vignette__liste a {
   font-weight: 500;
   font-size: 0.75em;
   color: #901C1C;
@@ -496,12 +496,12 @@ ul {
   margin: 0 2px;
   cursor: pointer;
 }
-.fiche-acc__liste a:hover, .fiche-acc__liste a:focus {
+.vignette__liste a:hover, .vignette__liste a:focus {
   background-color: #901C1C;
   color: white;
 }
 
-.fiche-pho {
+.fiche {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -513,51 +513,51 @@ ul {
   padding: 56px 50px;
 }
 @media all and (max-width: 1024px) {
-  .fiche-pho {
+  .fiche {
     background-color: white;
     padding: 0;
   }
 }
-.fiche-pho > div {
+.fiche > div {
   position: relative;
 }
-.fiche-pho h1 {
+.fiche h1 {
   font-size: 4em;
   color: #D3573C;
 }
 @media all and (max-width: 1024px) {
-  .fiche-pho h1 {
+  .fiche h1 {
     font-size: 2.25em;
   }
 }
-.fiche-pho__lieu {
+.fiche__lieu {
   font-size: 1.5em;
   color: #901C1C;
 }
 @media all and (max-width: 1024px) {
-  .fiche-pho__lieu {
+  .fiche__lieu {
     font-size: 0.813em;
   }
 }
-.fiche-pho__citation {
+.fiche__citation {
   font-size: 1.125em;
   color: #525252;
   margin-top: 18px;
 }
 @media all and (max-width: 1024px) {
-  .fiche-pho__citation {
+  .fiche__citation {
     font-size: 0.813em;
     margin-top: 6px;
     color: #757575;
   }
 }
-.fiche-pho__liste {
+.fiche__liste {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   margin-top: 20px;
 }
-.fiche-pho__liste a {
+.fiche__liste a {
   font-weight: 500;
   font-size: 1.125em;
   color: #901C1C;
@@ -566,12 +566,12 @@ ul {
   padding: 1px 6px 1px 3px;
   margin: 0 2px;
 }
-.fiche-pho__liste a:hover, .fiche-pho__liste a:focus {
+.fiche__liste a:hover, .fiche__liste a:focus {
   background-color: #901C1C;
   color: white;
 }
 @media all and (max-width: 1024px) {
-  .fiche-pho__liste a {
+  .fiche__liste a {
     font-weight: 500;
     font-size: 0.813em;
     color: #901C1C;
@@ -580,7 +580,7 @@ ul {
     padding: 1px 6px 1px 3px;
     margin: 0 2px;
   }
-  .fiche-pho__liste a:hover, .fiche-pho__liste a:focus {
+  .fiche__liste a:hover, .fiche__liste a:focus {
     background-color: #901C1C;
     color: white;
   }
@@ -746,7 +746,7 @@ ul {
   border: none;
   margin: 5px 0 26px 0;
 }
-.modale-contact__form .invis {
+.modale-contact__form .lecteur {
   position: absolute;
   top: 10000px;
 }

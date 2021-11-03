@@ -19,27 +19,14 @@
       max-height: 80vh;
       object-fit: contain;
       border-radius: 5px;
-    }  
+    }
   }
   &__descr {
     display: flex;
-    justify-content: space-between;
-    h2 {
-      font-size: 1em;
-      max-width: 75%;
-      @include mob-max {
-        font-size: 0.875em;
-      } 
-    }
-    p {
-      cursor: pointer;
-      font-size: 1em;
-      @include mob-max {
-        font-size: 0.875em;
-      }    
-    }
-    span {
-      font-weight: 500;
+    font-size: 1em;
+    max-width: 75%;
+    @include mob-max {
+      font-size: 0.875em;
     }
   }
 }

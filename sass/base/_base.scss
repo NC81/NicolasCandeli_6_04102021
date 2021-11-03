@@ -22,3 +22,14 @@ h1, h2, ul, p, figure, button {
 ul {
   list-style-type: none;
 }
+
+.lecteur {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+ }

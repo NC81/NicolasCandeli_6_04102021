@@ -1,0 +1,49 @@
+// Fiche de présentation (page du photographe)
+.fiche {
+  display: flex;
+  justify-content: space-between;
+  background-color: $clr-qua;
+  margin-top: 40px;
+  padding: 56px 50px;
+  @include tab-max {
+    background-color: white;
+    padding: 0;
+  }
+  > div {
+    position: relative;
+  }
+  h1 {
+    font-size: 4em;
+    color: $clr-sec;
+    @include tab-max {
+      font-size: 2.25em;
+    }
+  }
+  &__lieu {
+    font-size: 1.5em;
+    color: $clr-pri;
+    @include tab-max {
+      font-size: .813em;
+    }
+  }
+  &__citation {
+    font-size: 1.125em;
+    color: #525252;
+    margin-top: 18px;
+    @include tab-max {
+      font-size: .813em;
+      margin-top: 6px;
+      color: #757575;
+    }
+  }
+  &__liste {
+    display: flex;
+    margin-top: 20px;
+    a {
+      @include tags(1.125em, 12px);
+      @include tab-max {
+        @include tags(0.813em, 11px);
+      }
+    }
+  }    
+}

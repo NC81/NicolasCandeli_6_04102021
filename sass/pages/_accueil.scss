@@ -35,12 +35,16 @@
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 10%;
+    // gap: calc((100% - 1050px) / 2);
     @include mob-max {
       flex-direction: column;
     }
     @include tab-max {
       gap: 2%;
     }
+    &::after {
+      content: "";
+      width: 300px;
+    }
   }
 }
-

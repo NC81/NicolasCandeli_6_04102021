@@ -1,5 +1,4 @@
-// SECTION GALERIE
-// Menu déroulant et Conteneur de la galerie
+// Conteneur de la galerie
 .galerie {
   padding-top: 20px; 
   .galerie-tri {
@@ -11,11 +10,19 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    // gap: calc((100% - 1050px) / 2);
     gap: 2%;
     margin-top: 20px;
+    @include tab-max {
+      margin-top: 40px;
+    }
     @include mob-max {
       flex-direction: column;
       margin-top: 40px;
+    }
+    &::after {
+      content: "";
+      width: 350px;
     }
   }
 }

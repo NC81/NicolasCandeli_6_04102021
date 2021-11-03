@@ -39,8 +39,12 @@
   a {
     display: block;
     cursor: pointer;
+    &:focus {
+      outline: 4px solid $clr-pri;
+    }
   }
   img, video {
+    display: block;
     width: 100%;
     height: 300px;
     object-fit: cover;
@@ -53,7 +57,7 @@
     display: flex;
     justify-content: space-between;
     color: $clr-pri;
-    margin-top: 3px;
+    margin-top: 10px;
   }
   h2 {
     max-width: 270px;
@@ -65,8 +69,14 @@
   p {
     font-size: 1em;
     cursor: pointer;
+    padding: 0 3px 0 3px;
     @include tab-max {
       font-size: 0.875em;
+    }
+    &:focus {
+      color: white;
+      background-color: $clr-pri;
+      border-radius: 5px;
     }
   }
   span {
