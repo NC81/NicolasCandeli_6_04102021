@@ -39,7 +39,11 @@
   &__liste {
     display: flex;
     margin-top: 20px;
-    a {
+    max-width: 180px;
+    li:focus > .etiq-cont--pho {
+      border: 2px solid $clr-pri;
+    }
+    .etiq-cont--pho {
       @include tags(1.125em, 12px);
       @include tab-max {
         @include tags(0.813em, 11px);

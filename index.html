@@ -8,6 +8,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet" />
+        <link rel="shortcut icon" href="#">
     </head>
 
     <body>
@@ -27,16 +28,40 @@
                         <path d="M135.437 7.94263H129.257L125.707 4.03638H114.004L110.454 7.94263H104.273C102.17 7.94263 100.329 9.63533 100.329 11.8489V35.026C100.329 37.1093 102.038 38.9322 104.273 38.9322H135.437C137.541 38.9322 139.382 37.2395 139.382 35.026V11.7187C139.382 9.63533 137.672 7.94263 135.437 7.94263ZM135.437 34.8957H104.405V11.7187H112.294L115.845 7.81242H124.129L127.548 11.7187H135.437V34.8957ZM119.921 13.6718C114.53 13.6718 110.191 17.9687 110.191 23.3072C110.191 28.6457 114.53 32.9426 119.921 32.9426C125.312 32.9426 129.651 28.6457 129.651 23.3072C129.651 17.9687 125.312 13.6718 119.921 13.6718ZM119.921 29.1666C116.765 29.1666 114.135 26.5624 114.135 23.4374C114.135 20.3124 116.765 17.7083 119.921 17.7083C123.077 17.7083 125.707 20.3124 125.707 23.4374C125.707 26.5624 123.077 29.1666 119.921 29.1666Z" fill="#911C1C"/>
                     </svg>
                 </a>
-                <nav aria-label="Catégories de photographes">
+                <nav>
                     <ul class="header__liste">
-                        <li><a href="#acc-sct">#Portrait</a></li>
-                        <li><a href="#acc-sct">#Art</a></li>
-                        <li><a href="#acc-sct">#Fashion</a></li>
-                        <li><a href="#acc-sct">#Architecture</a></li>
-                        <li><a href="#acc-sct">#Travel</a></li>
-                        <li><a href="#acc-sct">#Sport</a></li>
-                        <li><a href="#acc-sct">#Animals</a></li>
-                        <li><a href="#acc-sct">#Events</a></li>
+                        <li role="switch" aria-checked="false" aria-labelledby="acc-portrait" tabindex="0" >    
+                            <span class="etiq-cont" data-checked="false">#Portrait</span>
+                            <span id="acc-portrait" class="lect-ecran">Photographes de type Portrait</span>
+                        </li>
+                        <li role="switch" aria-checked="false" aria-labelledby="acc-art" tabindex="0">                            
+                            <span class="etiq-cont" data-checked="false">#Art</span>
+                            <span id="acc-art" class="lect-ecran">Photographes de type art</span>
+                        </li>
+                        <li role="switch" aria-checked="false" aria-labelledby="acc-faschion" tabindex="0">                           
+                            <span class="etiq-cont" data-checked="false">#Fashion</span>
+                            <span id="acc-faschion" class="lect-ecran">Photographes de type faschion</span>
+                        </li>
+                       <li role="switch" aria-checked="false" aria-labelledby="acc-architecture" tabindex="0">                            
+                            <span class="etiq-cont" data-checked="false">#Architecture</span>
+                            <span id="acc-architecture" class="lect-ecran">Photographes de type architecture</span>
+                        </li>
+                        <li role="switch" aria-checked="false" aria-labelledby="acc-travel" tabindex="0">                           
+                            <span class="etiq-cont" data-checked="false">#Travel</span>
+                            <span id="acc-travel" class="lect-ecran">Photographes de type travel</span>
+                        </li>
+                        <li role="switch" aria-checked="false" aria-labelledby="acc-sport" tabindex="0">                            
+                            <span class="etiq-cont" data-checked="false">#Sport</span>
+                            <span id="acc-sport" class="lect-ecran">Photographes de type sport</span>
+                        </li>
+                        <li role="switch" aria-checked="false" aria-labelledby="acc-animals" tabindex="0">
+                            <span class="etiq-cont" data-checked="false">#Animals</span>
+                            <span id="acc-animals" class="lect-ecran">Photographes de type animals</span>
+                        </li>
+                        <li role="switch" aria-checked="false" aria-labelledby="acc-events" tabindex="0">
+                            <span class="etiq-cont" data-checked="false">#Events</span>
+                            <span id="acc-events" class="lect-ecran">Photographes de type events</span>
+                        </li>
                     </ul>
                 </nav>
             </header>

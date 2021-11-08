@@ -343,7 +343,7 @@ ul {
   }
 }
 
-.img-fiche {
+.present-img {
   display: block;
   border-radius: 50%;
   -o-object-fit: cover;
@@ -353,11 +353,11 @@ ul {
   -ms-flex-negative: 0;
       flex-shrink: 0;
 }
-.img-fiche--pho {
+.present-img--pho {
   margin-left: 210px;
 }
 @media all and (max-width: 1024px) {
-  .img-fiche--pho {
+  .present-img--pho {
     right: 5%;
     width: 125px;
     height: 125px;
@@ -365,7 +365,7 @@ ul {
   }
 }
 @media all and (max-width: 599px) {
-  .img-fiche--pho {
+  .present-img--pho {
     width: 100px;
     height: 100px;
   }
@@ -746,7 +746,7 @@ ul {
   border: none;
   margin: 5px 0 26px 0;
 }
-.modale-contact__form .lecteur {
+.modale-contact__form .lect-ecran {
   position: absolute;
   top: 10000px;
 }

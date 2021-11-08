@@ -12,20 +12,6 @@
 }
 
 // Étiquettes (catégories de photographe)
-@mixin tags {
-  font-weight: 500;
-  font-size: 0.75em;
-  color: $clr-pri;
-  border: solid 0.5px #C4C4C4;
-  border-radius: 11px;
-  padding: 1px 6px 1px 3px;
-  margin: 0 2px;
-  &:hover, &:focus {
-    background-color: $clr-pri;
-    color: white;
-  } 
-}
-
 @mixin tags($em: 0.75em, $br: 11px) {
   font-weight: 500;
   font-size: $em;
@@ -34,10 +20,13 @@
   border-radius: $br;
   padding: 1px 6px 1px 3px;
   margin: 0 2px;
-  &:hover, &:focus {
+  &:hover {
+    cursor: pointer;
+  }
+  &[data-checked=true] {
     background-color: $clr-pri;
     color: white;
-  } 
+  }
 }
 
 // Barres des boutons de fermeture

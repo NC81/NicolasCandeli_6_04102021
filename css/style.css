@@ -23,7 +23,7 @@ ul {
   list-style-type: none;
 }
 
-.lecteur {
+.lect-ecran {
   border: 0;
   clip: rect(0 0 0 0);
   height: 1px;
@@ -41,14 +41,12 @@ ul {
   border-radius: 5px;
   border: none;
   font-size: 1.125em;
-  font-size: 18px;
   font-weight: 700;
   color: white;
 }
 @media all and (max-width: 1233px) {
   .btn {
     line-height: 35px;
-    font-size: 1.125em;
   }
 }
 .btn:hover, .btn:focus {
@@ -77,9 +75,8 @@ ul {
   text-align: left;
   cursor: pointer;
 }
-.btn--galerie span {
+.btn--galerie__texte {
   font-weight: 700;
-  font-size: 18px;
 }
 .btn--galerie .fa-chevron-down {
   position: absolute;
@@ -359,7 +356,7 @@ ul {
   }
 }
 
-.img-fiche {
+.present-img {
   display: block;
   border-radius: 50%;
   object-fit: cover;
@@ -367,11 +364,11 @@ ul {
   height: 200px;
   flex-shrink: 0;
 }
-.img-fiche--pho {
+.present-img--pho {
   margin-left: 210px;
 }
 @media all and (max-width: 1233px) {
-  .img-fiche--pho {
+  .present-img--pho {
     right: 5%;
     width: 125px;
     height: 125px;
@@ -379,7 +376,7 @@ ul {
   }
 }
 @media all and (max-width: 599px) {
-  .img-fiche--pho {
+  .present-img--pho {
     width: 100px;
     height: 100px;
   }
@@ -458,6 +455,7 @@ ul {
 
 .vignette {
   margin-bottom: 50px;
+  text-align: center;
 }
 @media all and (max-width: 1233px) {
   .vignette {
@@ -478,21 +476,22 @@ ul {
 .vignette__lien > h2 {
   font-size: 2.25em;
   color: #D3573C;
-  text-align: center;
+}
+.vignette__lien:focus > h2 {
+  color: white;
+  background: #D3573C;
+  border-radius: 5px;
 }
 .vignette p:nth-of-type(1) {
-  font-size: 0.813em;
-  text-align: center;
+  font-size: 0.8125em;
   color: #901C1C;
 }
 .vignette p:nth-of-type(2) {
-  font-size: 0.813em;
-  text-align: center;
+  font-size: 0.625em;
   margin-top: 3px;
 }
 .vignette p:nth-of-type(3) {
-  font-size: 0.563em;
-  text-align: center;
+  font-size: 0.5625em;
   color: #757575;
   margin-top: 3px;
 }
@@ -502,17 +501,22 @@ ul {
   justify-content: center;
   margin-top: 5px;
 }
-.vignette__liste a {
+.vignette__liste li:focus > .etiq-cont {
+  border: 2px solid #901C1C;
+}
+.vignette__liste .etiq-cont {
   font-weight: 500;
-  font-size: 0.75em;
+  font-size: 0.813em;
   color: #901C1C;
   border: solid 0.5px #C4C4C4;
   border-radius: 11px;
   padding: 1px 6px 1px 3px;
   margin: 0 2px;
+}
+.vignette__liste .etiq-cont:hover {
   cursor: pointer;
 }
-.vignette__liste a:hover, .vignette__liste a:focus {
+.vignette__liste .etiq-cont[data-checked=true] {
   background-color: #901C1C;
   color: white;
 }
@@ -566,8 +570,12 @@ ul {
 .fiche__liste {
   display: flex;
   margin-top: 20px;
+  max-width: 180px;
 }
-.fiche__liste a {
+.fiche__liste li:focus > .etiq-cont--pho {
+  border: 2px solid #901C1C;
+}
+.fiche__liste .etiq-cont--pho {
   font-weight: 500;
   font-size: 1.125em;
   color: #901C1C;
@@ -576,12 +584,15 @@ ul {
   padding: 1px 6px 1px 3px;
   margin: 0 2px;
 }
-.fiche__liste a:hover, .fiche__liste a:focus {
+.fiche__liste .etiq-cont--pho:hover {
+  cursor: pointer;
+}
+.fiche__liste .etiq-cont--pho[data-checked=true] {
   background-color: #901C1C;
   color: white;
 }
 @media all and (max-width: 1233px) {
-  .fiche__liste a {
+  .fiche__liste .etiq-cont--pho {
     font-weight: 500;
     font-size: 0.813em;
     color: #901C1C;
@@ -590,7 +601,10 @@ ul {
     padding: 1px 6px 1px 3px;
     margin: 0 2px;
   }
-  .fiche__liste a:hover, .fiche__liste a:focus {
+  .fiche__liste .etiq-cont--pho:hover {
+    cursor: pointer;
+  }
+  .fiche__liste .etiq-cont--pho[data-checked=true] {
     background-color: #901C1C;
     color: white;
   }
@@ -608,13 +622,12 @@ ul {
 }
 .header nav {
   margin-left: 86px;
-  line-height: 50px;
+  line-height: 25px;
 }
 @media all and (max-width: 1233px) {
   .header nav {
     width: 90%;
     margin: 18px auto 50px auto;
-    line-height: 25px;
   }
 }
 .header__liste {
@@ -622,16 +635,22 @@ ul {
   flex-wrap: wrap;
   justify-content: center;
 }
-.header__liste a {
+.header__liste li:focus > .etiq-cont {
+  border: 2px solid #901C1C;
+}
+.header__liste .etiq-cont {
   font-weight: 500;
-  font-size: 0.75em;
+  font-size: 0.813em;
   color: #901C1C;
   border: solid 0.5px #C4C4C4;
   border-radius: 11px;
   padding: 1px 6px 1px 3px;
   margin: 0 2px;
 }
-.header__liste a:hover, .header__liste a:focus {
+.header__liste .etiq-cont:hover {
+  cursor: pointer;
+}
+.header__liste .etiq-cont[data-checked=true] {
   background-color: #901C1C;
   color: white;
 }
@@ -744,7 +763,7 @@ ul {
 .modale-contact__form textarea:focus {
   outline: 4px solid #901C1C;
 }
-.modale-contact__form .lecteur {
+.modale-contact__form .lect-ecran {
   position: absolute;
   top: 10000px;
 }

@@ -1,6 +1,4 @@
 // DOM
-// Base
-const blocPage = document.querySelector(".bloc-page");
 // Boutons
 const boutonOuvreForm = document.querySelector(".btn--pho");
 const boutonFermeForm = document.querySelector(".btn-ferme--form");
@@ -39,7 +37,7 @@ class AffichageFormulaire {
       blocPage.setAttribute("aria-hidden", "false"); 
     });
   }
-  // Fermeture du formulaire par la pression de la touche "Échap"
+  // Fermeture du formulaire par la touche "Échap"
   fermeTouche() {
     formModale.addEventListener("keydown", (evt) => {
       if (evt.key === "Escape") {
@@ -62,9 +60,9 @@ class AffichageFormulaire {
 const formulaire = new AffichageFormulaire();
 
 // CARROUSEL
-let indexCourant;
-let tableauLiensGalerie;
+let tableauLiensGalerie = [];
 let baliseLienGalerie;
+let indexCourant;
 const chevronDroit = document.querySelector(".btn-chvr--dro");
 const chevronGauche = document.querySelector(".btn-chvr--gau");
 // Méthodes d'affichage du carrousel
@@ -88,43 +86,45 @@ class AffichageCarrousel {
   }
   // Affichage du carrousel 
   affiche() { 
-    let liensOuvrantCarrousel = document.querySelectorAll(".galerie figure a");
-    tableauLiensGalerie = Array.from(liensOuvrantCarrousel);
-    for (let i=0; i < tableauLiensGalerie.length; i++) {
-      tableauLiensGalerie[i].addEventListener("click", () => { 
-        indexCourant = tableauLiensGalerie.indexOf(tableauLiensGalerie[i]);
-        
-        baliseLienGalerie = tableauLiensGalerie[i].firstChild.tagName;
+    galerieDom.addEventListener("click", (evt) => {
+      if (evt.target.parentElement.tagName === "A") {
+        const liensOuvrantCarrousel = document.querySelectorAll(".galerie-cont figure a[data-visible=true]");
+        tableauLiensGalerie = Array.from(liensOuvrantCarrousel);
+        // Initialisation de l'index courant
+        for (let i=0; i < tableauLiensGalerie.length; i++) {
+          if ( tableauLiensGalerie[i] == evt.target.parentElement) {
+            indexCourant = tableauLiensGalerie.indexOf(tableauLiensGalerie[i]);
+            console.log("index", indexCourant);
+          } 
+        }
+        // Création de la structure HTML pour chaque média
+        baliseLienGalerie = tableauLiensGalerie[indexCourant].firstChild.tagName;
         const nouveauMedia = document.createElement(baliseLienGalerie);
-
         figureCarrousel.prepend(nouveauMedia);
-        nouveauMedia.setAttribute("alt", tableauLiensGalerie[i].firstChild.getAttribute("alt"));
+        nouveauMedia.setAttribute("alt", tableauLiensGalerie[indexCourant].firstChild.getAttribute("alt"));
         if (baliseLienGalerie === "VIDEO") {
           nouveauMedia.innerHTML = "<source></source>";
           setAttributes(nouveauMedia, {"controls": "", "autoplay": "false"});
-          setAttributes(nouveauMedia.firstChild, {"src": tableauLiensGalerie[i].firstChild.src.replace("S_", ""), "type": "video/mp4"});         
+          setAttributes(nouveauMedia.firstChild, {"src": tableauLiensGalerie[indexCourant].firstChild.src.replace("S_", ""), "type": "video/mp4"});         
         }
-
-        const titre = tableauLiensGalerie[i].nextElementSibling.firstChild;
-        figureCarrousel.firstChild.src = tableauLiensGalerie[i].firstChild.src.replace("S_", "");
+        // Remplissage du carrousel par le titre et la source du média
+        const titre = tableauLiensGalerie[indexCourant].nextElementSibling.firstChild;
+        figureCarrousel.firstChild.src = tableauLiensGalerie[indexCourant].firstChild.src.replace("S_", "");
         figcaptionCarrousel.textContent = titre.textContent;
-        
-        // Ouvre le carrousel seulement si celui-ci est fermé
+        // N'ouvre le carrousel que s'il est préalablement fermé
         let carrouselStyles = window.getComputedStyle(carrouselModale);
         if (carrouselStyles.getPropertyValue("display") === "none") {
           this.ouvre();
         }
-      });
-    }
+      }
+    });
     // Ouverture du carrousel par le clavier
-    for (let i=0; i < tableauLiensGalerie.length; i++) {
-      tableauLiensGalerie[i].addEventListener("keydown", (evt) => {
-        if (evt.key === "Enter") {
-          evt.preventDefault();
-          tableauLiensGalerie[i].click();
-        }
-      });
-    }
+    galerieDom.addEventListener("keydown", (evt) => {
+      if ((document.activeElement.tagName === "A") && (evt.key === "Enter")) {
+        evt.preventDefault();
+        document.activeElement.firstChild.click();
+      }
+    });
     this.ferme();
     navigation.transforme();
   }
@@ -150,7 +150,7 @@ class NavigationCarrousel {
       let indexPrecedent = () => {
         if (indexCourant === 0) {
           indexCourant = tableauLiensGalerie.length;
-        } 
+        }
         return (indexCourant - 1);
       }
       // Modification de l'index courant après le changement du carrousel
@@ -164,7 +164,7 @@ class NavigationCarrousel {
       }
       // Remplissage du carrousel par le contenu correspondant de la galerie
       figureCarrousel.firstChild.remove();
-      tableauLiensGalerie[indexNouveau].click();
+      tableauLiensGalerie[indexNouveau].firstChild.click();
       carrouselModale.focus();
     });
   }
@@ -176,7 +176,7 @@ class NavigationCarrousel {
     boutonAvant.cliqueBouton();
     boutonApres.cliqueBouton();
   // Association des flèches du clavier au cliquage des boutons
-    carrouselModale.addEventListener("keyup", (evt) => {
+    carrouselModale.addEventListener("keydown", (evt) => {
       console.log(evt.key);
       if ((evt.key === "ArrowLeft") || (evt.key === "ArrowDown")) {
         evt.preventDefault();
@@ -195,5 +195,5 @@ class NavigationCarrousel {
 }
 const navigation = new NavigationCarrousel();
 
-/* global photographe setAttributes */
+/* global photographe setAttributes galerieDom blocPage */
 /* exported carrousel formulaire */

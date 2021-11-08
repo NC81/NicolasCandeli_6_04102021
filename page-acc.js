@@ -1,4 +1,5 @@
 const photographes = [];
+const pageBlock = document.querySelector(".bloc-page");
 
 // Affiche le contenu JSON pour la page d'accueil
 let affichePageAccueil = () => {
@@ -33,10 +34,10 @@ class affichageAccueil {
       const nouveauDiv = document.createElement("div");
       sectionPageAccueil.appendChild(nouveauDiv);
       nouveauDiv.innerHTML = "<a><img><h2></h2></a><p></p><p></p><p></p><ul></ul>";
-      // Désignation des sélecteurs
+      // Nommage du DOM
       nouveauDiv.setAttribute("class", "vignette");
       nouveauDiv.firstChild.setAttribute("class", "vignette__lien");
-      nouveauDiv.firstChild.firstChild.setAttribute("class", "img-fiche");
+      nouveauDiv.firstChild.firstChild.setAttribute("class", "present-img");
       nouveauDiv.lastChild.setAttribute("class", "vignette__liste");
     }
   }
@@ -46,7 +47,7 @@ class affichageAccueil {
     // Génération de fiche pour chaque photographe
     // DOM
     const nomsPhotographePageAccueil = document.querySelectorAll(".vignette__lien h2");
-    const portraitsPageAccueil = document.querySelectorAll(".img-fiche"); 
+    const portraitsPageAccueil = document.querySelectorAll(".present-img"); 
     const lieuxPhotographePageAccueil = document.querySelectorAll(".vignette p:nth-of-type(1)");
     const liensPhotographePageAccueil = document.querySelectorAll(".vignette__lien");
     const citationsPhotographePageAccueil = document.querySelectorAll(".vignette p:nth-of-type(2)");
@@ -67,53 +68,104 @@ class affichageAccueil {
       // Création des étiquettes
       for(let t=0; t < photographes[p].tags.length; t++) {
       const nouveauLi = document.createElement("li");
-      const nouveauA = document.createElement("a");
       listeetiquetteContenusPageAccueil[p].appendChild(nouveauLi);
-      nouveauLi.appendChild(nouveauA);
-      nouveauA.innerHTML = "#" + photographes[p].tags[t];
+      nouveauLi.innerHTML= "<span>#" + photographes[p].tags[t] + "</span>" + "<span>Filtrer les photographes par " + photographes[p].tags[t] + "</span>"
+      setAttributes(nouveauLi, {"role": "switch", "aria-checked": "false", "aria-labelledby": "acc-" + photographes[p].tags[t], "tabindex": "0"});
+      setAttributes(nouveauLi.firstChild, {"class": "etiq-cont", "data-checked": "false"});
+      setAttributes(nouveauLi.lastChild, {"id": "acc-" + photographes[p].tags[t], "class": "lect-ecran"});    
       }
     }
   }
 }
 const accueil= new affichageAccueil();
 
+// Permet d'ajouter plusieurs attributs en une ligne
+let setAttributes = (el, attrs) => {
+  for(var key in attrs) {
+    el.setAttribute(key, attrs[key]);
+  }
+}
+
 // Méthodes triant selon l'étiquette
-let etiquetteContenu;
+let etiquettesTableau = [];
 class FiltrageVignettes {
-  // Inscription d'attribut aux vignettes à filtrer
+// Définit les vignettes à afficher et à effacer
   definit() {
-    const vignettes = document.querySelectorAll(".acc-main section div");
-    for (let vignette of vignettes) {
-      vignette.setAttribute("data-correct", "false");
-      const lis = vignette.lastChild.children;
-      for (let li of lis) {
-        if (li.firstChild.textContent == etiquetteContenu) {
-          vignette.setAttribute("data-correct", "true");
+    const etiquettesDom = document.querySelectorAll(".etiq-cont");
+    const vignettes = document.querySelectorAll(".vignette");
+    // Ajout du nom de l'étiquette sélectionnée à la classe des vignettes correspondantes
+    for (let etqTab of etiquettesTableau) {
+       for (let etq of etiquettesDom) {
+        if ((etqTab === etq.textContent) && (!etq.parentElement.parentElement.parentElement.classList.contains("" + etqTab))) {
+        etq.parentElement.parentElement.parentElement.className += " " + etqTab;
         }
       }
     }
-  }
-  // Affichage du DOM selon l'etiquette
-  affiche() {
-    const vignettes = document.querySelectorAll(".acc-main section div");
-    for (let vignette of vignettes) {
-      if (vignette.getAttribute("data-correct") == "false") {
-        vignette.style.display = "none";
+    // Vérification des classes de chaque vignette pour définir l'attribut "data-correct"
+    for (let vig of vignettes) {
+      let listeDeClasses = vig.className.split(' '); 
+      if ((listeDeClasses.length - 1) === etiquettesTableau.length) {
+        vig.setAttribute("data-correct", "true");
       } else {
-        vignette.style.display = "block";
+        vig.setAttribute("data-correct", "false");
       }
     }
   }
-  // Filtrage final
-  filtre() {
-    const lietiquetteContenusHeader = document.querySelectorAll(".header__liste li");
-    for (let li of lietiquetteContenusHeader) {
-      li.addEventListener("click", () => {
-        etiquetteContenu = li.firstChild.textContent.toLowerCase();
-        this.definit();
-        this.affiche(); 
-      })
+  // Affichage du DOM selon la valeur de l'attribut "data-correct"
+  affiche() {
+    const vignettes = document.querySelectorAll(".vignette");
+    for (let v of vignettes) {
+      if (v.dataset.correct === "true") {
+        v.style.display = "block";
+      } else {
+        v.style.display = "none";
+      }
     }
+  }
+  // Filtrage complet composé de l'évènement de cliquage
+  filtre() {
+    const vignettes = document.querySelectorAll(".vignette");
+    const etiquettesDom = document.querySelectorAll(".etiq-cont");
+    pageBlock.addEventListener("click", (evt) => {
+      if ((evt.target.dataset.checked === "true") && (evt.target.className === "etiq-cont")) {
+        let etiquetteContenu = evt.target.textContent.toLowerCase();
+        // Assignation des attributs
+        evt.target.dataset.checked = false;
+        evt.target.parentElement.setAttribute("aria-checked", "false");
+        for (let etq of etiquettesDom) { 
+          if (etq.textContent.toLowerCase() == evt.target.textContent.toLowerCase()) {
+            etq.setAttribute("data-checked", "false");
+          }
+        }
+        // Modification du tableau d'étiquettes
+        const index = etiquettesTableau.indexOf(etiquetteContenu);
+        etiquettesTableau.splice(index, 1);
+        console.log("tableau d'étiquettes", etiquettesTableau);
+        for (let vig of vignettes) {
+          if (vig.classList.contains("" + etiquetteContenu))  {
+            vig.classList.remove("" + etiquetteContenu);
+          }
+        }
+      } else if ((evt.target.dataset.checked === "false" ) && (evt.target.className === "etiq-cont")) {
+        evt.target.parentElement.setAttribute("aria-checked", "true");
+        for (let etq of etiquettesDom) {
+          if (etq.textContent.toLowerCase() == evt.target.textContent.toLowerCase()) {
+            etq.dataset.checked = true;
+          }
+        }
+        let etiquetteCiblee = evt.target.textContent.toLowerCase();
+        etiquettesTableau.push(etiquetteCiblee);
+        console.log("tableau d'étiquettes", etiquettesTableau);
+      }
+      this.definit();
+      this.affiche(); 
+    });
+    // Sélection de l'étiquette par le clavier
+    pageBlock.addEventListener("keydown", (evt) => {
+      if ((evt.target.tagName === "LI") && (evt.key === "Enter")) {
+        evt.target.children[0].click();
+      }
+    });
   }
 }
 const vignettes = new FiltrageVignettes();

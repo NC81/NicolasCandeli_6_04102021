@@ -3,19 +3,21 @@
   margin: 0 35% 0 0;
   nav {
     margin-left: 86px;
-    line-height: 50px;
+    line-height: 25px;
     @include tab-max {
       width: 90%;
       margin: 18px auto 50px auto;
-      line-height: 25px;
     }
   }
   &__liste {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    a {
-      @include tags;
+    li:focus > .etiq-cont {
+      border: 2px solid $clr-pri;
+    }
+    .etiq-cont {
+      @include tags(0.813em, 11px);
     }
   }
 }

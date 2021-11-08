@@ -1,15 +1,17 @@
 // DOM
+// Base
+const blocPage = document.querySelector(".bloc-page");
 // Presentation
 const nom = document.querySelector(".fiche h1");
 const lieu = document.querySelector(".fiche__lieu");
 const citation = document.querySelector(".fiche__citation");
 const prix = document.querySelector(".infosup__prix");
-const portrait = document.querySelector(".img-fiche--pho");
+const portrait = document.querySelector(".present-img--pho");
 const listeEtiquettes = document.querySelector(".fiche__liste");
 const galerieDom = document.querySelector(".galerie-cont");
 // Menu
 const boutonsMenu = document.querySelectorAll(".menu-liste li");
-const boutonSelectionContenu = document.querySelector(".btn--galerie span");
+const boutonSelectionContenu = document.querySelector(".btn--galerie__texte");
 const boutonSelection = document.querySelector(".btn--galerie");
 const listeMenu = document.querySelector(".menu-liste");
 
@@ -47,27 +49,22 @@ let affichePagePhotographe = () => {
       }
     }
     // Initialisation des tableaux d'images et de vidéos 
-    images = tableau.rangeImages(); 
+    images = tableau.rangeImages();
     videos = tableau.rangeVideos();
-
     // Appel des fonctions affichant les différents types de contenu
     remplitFiche();
     galerie.remplit();
     mediasParEtiquettes.filtre();
-    
     // Initialisation du tableau rangeant les médias pour le menu de filtrage
     mediasTriables = tableau.rangeMediasTriables(); 
-
     // Appel des fonctions permettant de filtrer les médias à partir du menu
     menu.ouverture();
     menu.choisitTri();
     menu.filtre();
-
     // Appel du carrousel et du formulaire
     carrousel.affiche();
     formulaire.ouvre();
-
-    // Appel de la fonction permettant d'ajouter un "like" à l'image et au compteur global
+    // Appel de la fonction permettant d'ajouter un "like" 
     cœur.additionne();
   })
   .catch(function(err) {
@@ -76,7 +73,7 @@ let affichePagePhotographe = () => {
 }
 affichePagePhotographe();
 
-// Permet d'ajouter plusieurs attributs en une fois
+// Permet d'ajouter plusieurs attributs en une ligne
 let setAttributes = (el, attrs) => {
   for(var key in attrs) {
     el.setAttribute(key, attrs[key]);
@@ -104,15 +101,15 @@ let remplitFiche = () => {
   // Création des étiquettes
   for (let tag of photographe.tags) {
     const nouveauLi = document.createElement("li");
-    const nouveauA = document.createElement("a");
-    listeEtiquettes.appendChild(nouveauLi);
-    nouveauLi.appendChild(nouveauA);
-    nouveauA.setAttribute("href", "#galerie");
-    nouveauA.innerHTML = "#" + tag;
+    listeEtiquettes.appendChild(nouveauLi); 
+    nouveauLi.innerHTML= "<span>#" + tag + "</span>" + "<span>Filtrer les photographes par " + tag + "</span>"
+    setAttributes(nouveauLi, {"role": "switch", "aria-checked": "false", "aria-labelledby": "acc-" + tag, "tabindex": "0"});
+    setAttributes(nouveauLi.firstChild, {"class": "etiq-cont--pho", "data-checked": "false"});
+    setAttributes(nouveauLi.lastChild, {"id": "acc-" + tag, "class": "lect-ecran"});
   }
 }
 
-// Modèle d'objet permettant de ranger les médias dans le tableau "mediasTriables"
+// Modèle d'objet pour ranger les médias dans le tableau "mediasTriables"
 class MediaARanger {
   constructor(dom, date, titre, cœurs) {
     this.dom = dom,
@@ -145,7 +142,7 @@ class CreationTableaux {
   rangeMediasTriables() { /* exported creeTableauMediasTriables */
     for (let fig of galerieDom.children) {
       let dom = fig;
-      let date = Date.parse(fig.getAttribute("data-date"));
+      let date = Date.parse(fig.dataset.date);
       let titre = fig.lastChild.firstChild.textContent;
       let cœurs = fig.lastChild.lastChild.firstChild.textContent;
       let mediaPret = new MediaARanger(dom, date, titre, cœurs); 
@@ -271,7 +268,6 @@ class FiltrageMenu {
         } else {
           i++;
         }
-        console.log("ok");
         boutonsMenu[i].focus();
       }
       if ((evt.key === "ArrowUp") || (evt.key === "ArrowRight")) {
@@ -316,12 +312,13 @@ class FiltrageMenu {
     if (type === "Titre") {
       this.triParTitre();
     }
-    
+
     for (let med of mediasTriables) {
       galerieDom.appendChild(med.dom);
-    }
+      med.dom.firstChild.dataset.visible = true;
+    }   
   }
-  // Méthode globale automatisant le filtrage par type (popularité, date, cœurs) lors d'un clic dans le menu
+  // Méthode globale automatisant le filtrage par type (popularité, date, cœurs) lors d'un clic
   filtre() {
     for (let btn of boutonsMenu) {
       btn.addEventListener("click", () => {
@@ -330,37 +327,62 @@ class FiltrageMenu {
         console.log(type);
         listeMenu.style.display = "none"; 
         boutonSelection.setAttribute("aria-expanded", "false");
+        listeMenu.setAttribute("aria-activedescendant", "" + btn.id);
         this.choisitTri(type);
-     });
+      });
+      btn.addEventListener("focus", () => {
+        boutonsMenu.forEach(bouton => bouton.setAttribute("aria-selected", "false"));
+        btn.setAttribute("aria-selected", "true");
+      });
     }
   }
 }
 const menu = new FiltrageMenu();
-let liensOuvrantCarrousel;
 
 // Méthodes filtrant les vidéos selon les étiquettes
 class FiltrageEtiquettes {
   // Affiche les éléments <figure> selon la valeur de l'attribut "data-tag"
   affiche() {
-    const objetsGalerie = galerieDom.children;
-    for (let objet of objetsGalerie) {
-      if (objet.getAttribute("data-tag") === etiquetteContenu) {
-        objet.style.display= "block";
-        // objet.setAttribute("data-block", "true");
+    const elementsGalerie = galerieDom.children;
+    for (let elt of elementsGalerie) {
+      if ((elt.dataset.tag === etiquetteContenu) || (etiquetteContenu == null)) {
+        elt.style.display = "block";
+        elt.firstChild.dataset.visible = true;
       } else {
-        objet.style.display= "none";
+        elt.style.display = "none";
+        elt.firstChild.dataset.visible = false;
       }
     }
   }
   // Méthode globale filtrant les éléments <figure> selon l'étiquette choisie
   filtre() {
-    const liEtiquettes = document.querySelectorAll(".fiche__liste li");
-    for (let li of liEtiquettes) {
-      li.addEventListener("click", () => {
-        etiquetteContenu = li.firstChild.textContent;
-        this.affiche();     
-      });
-    }
+    const etiquettesDom = document.querySelectorAll(".etiq-cont--pho");
+    listeEtiquettes.addEventListener("click", (evt) => {
+      if ((evt.target.dataset.checked === "true") && (evt.target.className === "etiq-cont--pho")) {
+        evt.target.dataset.checked = false;
+        evt.target.parentElement.setAttribute("aria-checked", "false");
+        etiquetteContenu = null;
+      } else if ((evt.target.dataset.checked === "false") && (evt.target.className === "etiq-cont--pho")) {
+        evt.target.dataset.checked = true;
+        evt.target.parentElement.setAttribute("aria-checked", "true");
+        etiquetteContenu = evt.target.textContent;
+      }
+      for (let dom of etiquettesDom) {
+        if ((dom.dataset.checked === "true") && (evt.target != dom)) {
+          dom.dataset.checked = false;
+          dom.parentElement.setAttribute("aria-checked", "false");
+          evt.target.dataset.checked = true;
+          etiquetteContenu = evt.target.textContent;
+        }
+      }
+      this.affiche(); 
+    });
+    // Sélection de l'étiquette par le clavier
+    blocPage.addEventListener("keyup", (evt) => {
+      if ((evt.target.tagName === "LI") && (evt.key === "Enter")) {
+        evt.target.children[0].click();
+      }
+    });
   }
 }
 const mediasParEtiquettes = new FiltrageEtiquettes();
@@ -387,9 +409,17 @@ class AffichageCœurs {
     for (let zone of zonesCœurs) {
       zone.addEventListener("click", () => {
         cœursSomme = parseInt(zone.firstChild.textContent);
-        cœursSomme++;
-        zone.firstChild.textContent = cœursSomme + " ";
+        if (zone.dataset.checked != "true") {
+          zone.dataset.checked = true;
+          cœursSomme++;
+          zone.firstChild.textContent = cœursSomme + " ";
           this.afficheSomme();
+        } else {
+          zone.dataset.checked = false;
+          cœursSomme--;
+          zone.firstChild.textContent = cœursSomme + " ";
+          this.afficheSomme();
+        }
       });
     }
     for (let zone of zonesCœurs) {
@@ -405,4 +435,3 @@ class AffichageCœurs {
 const cœur = new AffichageCœurs();
 
 /* global carrousel formulaire */
-/* exported liensOuvrantCarrousel */

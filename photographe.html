@@ -9,6 +9,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />        
+        <link rel="shortcut icon" href="#">
     </head>
     
     <body>
@@ -33,7 +34,7 @@
             <main class="pho-main">
                 
                 <aside class="infosup">
-                    <p><span class="infosup__cœurs"></span><span class="fas fa-heart"></span></p>
+                    <p><span class="infosup__cœurs"></span><span class="fas fa-heart" aria-label="likes"></span></p>
                     <p><span class="infosup__prix">300</span>€ / jour</p>
                 </aside>
            
@@ -45,19 +46,19 @@
                         <ul class="fiche__liste" role="listbox"></ul>
                         <button class="btn btn--pho">Contactez-moi</button>
                     </div>
-                    <img class="img-fiche img-fiche--pho" src="https://via.placeholder.com/100" alt="Photo du photographe" />
+                    <img class="present-img present-img--pho" src="https://via.placeholder.com/100" alt="Photo du photographe" />
                 </article>
 
                 <section class="galerie" id="galerie">
                     <div class="galerie-tri">Trier par
                         <button class="btn btn--galerie" aria-label="Ouvre le menu" aria-controls="menu" aria-haspopup="listbox" aria-expanded="false">
-                            <span>Popularité</span>
+                            <span class="btn--galerie__texte">Popularité</span>
                             <span class="fas fa-chevron-down" aria-hidden="true"></span>
                         </button>
-                        <ul class="menu-liste" id="menu" role="listbox" aria-activedescendant="date" tabindex="0">
-                            <li id="popularité" aria-selected="true" role="option" tabindex="-1">Popularité</li>
-                            <li id="date" aria-selected="false" role="option" tabindex="-1">Date</li>
-                            <li id="titre" aria-selected="false" role="option" tabindex="-1">Titre</li>
+                        <ul class="menu-liste" id="menu" role="listbox" aria-activedescendant="popularité" tabindex="0">
+                            <li id="menu-popu" aria-selected="true" role="option" tabindex="-1">Popularité</li>
+                            <li id="menu-date" aria-selected="false" role="option" tabindex="-1">Date</li>
+                            <li id="menu-titre" aria-selected="false" role="option" tabindex="-1">Titre</li>
                             <span class="fas fa-chevron-up" aria-hidden="true"></span>
                         </ul>
                     </div>
@@ -70,25 +71,25 @@
                         <h1 id="titre-form"></h1>
                         <p>
                             <label for="prenom" id="label-prenom">Prénom</label>
-                            <input tabindex="2" type="text" name="prenom" id="prenom" aria-labelledby="label-prenom" aria-describedby="format-nom-prenom" required />
-                            <span class="lecteur" id="format-nom-prenom">Le nombre de caractère doit être compris entre 2 et 50</span>
+                            <input tabindex="0" type="text" name="prenom" id="prenom" aria-labelledby="label-prenom" aria-describedby="format-nom-prenom" required />
+                            <span class="lect-ecran" id="format-nom-prenom">Le nombre de caractère doit être compris entre 2 et 50</span>
                         </p>
                         <p>
                             <label for="nom" id="label-nom">Nom</label>
-                            <input tabindex="3" type="text" name="nom" id="nom" aria-labelledby="label-nom" aria-describedby="format-nom-prenom" required />
+                            <input tabindex="0" type="text" name="nom" id="nom" aria-labelledby="label-nom" aria-describedby="format-nom-prenom" required />
                         </p>
                         <p>
                             <label for="email" id="label-email">Email</label>
-                            <input tabindex="4" type="text" name="email" id="email" aria-labelledby="label-email" aria-describedby="format-email" required />
-                            <span class="lecteur" id="format-email">Veuillez entrer un email valide</span>
+                            <input tabindex="0" type="text" name="email" id="email" aria-labelledby="label-email" aria-describedby="format-email" required />
+                            <span class="lect-ecran" id="format-email">Veuillez entrer un email valide</span>
                         </p>
                         <p>
                             <label for="message" id="label-message">Votre message</label>
-                            <textarea tabindex="5" name="message" id="message" aria-labelledby="label-message" aria-describedby="format-message" required></textarea>
-                            <span class="lecteur" id="format-message">Veuillez entrer le message à envoyer</span>
+                            <textarea tabindex="0" name="message" id="message" aria-labelledby="label-message" aria-describedby="format-message" required></textarea>
+                            <span class="lect-ecran" id="format-message">Veuillez entrer le message à envoyer</span>
                         </p>
-                        <button tabindex="6" class="btn btn-envoi">Envoyer</button>
-                        <button aria-label="Fermer" tabindex="1" class="btn-ferme--form"></button>
+                        <button tabindex="0" class="btn btn-envoi">Envoyer</button>
+                        <button aria-label="Fermer" tabindex="0" class="btn-ferme--form"></button>
                     </form>
                 </div>
                 
