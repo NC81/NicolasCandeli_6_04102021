@@ -4,40 +4,43 @@
     @content;
   }
 }
-  
 @mixin tab-max {
   @media all and (max-width: map-get($bkpt, tab)){
     @content;
   }
 }
 
-// Étiquettes (catégories de photographe)
+// Boutons d'étiquette
+@mixin btn-etiq($mgv, $mgh) {
+  margin: $mgv $mgh;
+  &[aria-pressed=true] > .etiq-cont {
+    background-color: $clr-pri;
+    color: white;
+  }
+  &:focus > .etiq-cont, &:hover > .etiq-cont {
+    border: 0.5px solid $clr-pri;
+  }
+}
+
+// Contenu des étiquettes
 @mixin tags($em: 0.75em, $br: 11px) {
   font-weight: 500;
   font-size: $em;
   color: $clr-pri;
   border: solid 0.5px #C4C4C4;
   border-radius: $br;
-  padding: 1px 6px 1px 3px;
-  margin: 0 2px;
-  &:hover {
-    cursor: pointer;
-  }
-  &[data-checked=true] {
-    background-color: $clr-pri;
-    color: white;
-  }
+  padding: 2px 5px;
 }
 
-// Barres des boutons de fermeture
-@mixin btn-barre($clr, $deg, $wdt, $hgt) {
+// Barres des boutons de fermeture (X)
+@mixin btn-barre($clr, $deg, $wdt, $hgt, $top, $left) {
   content: "";
   display: block;
   position: absolute;
   width: $wdt;
   height: $hgt;
-  left: 7px;
-  top: 22px;
+  left: $left;
+  top: $top;
   transform: rotate($deg);
   background-color: $clr;
 }
@@ -51,12 +54,11 @@
   height: 72px;
   border: none;
   background-color: rgba(255, 255, 255, 0);
-  cursor: pointer;
   &::before {
-    @include btn-barre($clr, -45deg, 54px, 6px);
+    @include btn-barre($clr, -45deg, 54px, 6px, 32px, 8px);
   }
   &::after {
-    @include btn-barre($clr, 45deg, 54px, 6px);
+    @include btn-barre($clr, 45deg, 54px, 6px, 32px, 8px);
   }
   &:hover::before, &:hover::after {
     background-color: survol-clr($clr);
@@ -73,11 +75,11 @@
   border: none;
   background-color: rgba(255, 255, 255, 0);
   &::before {
-    @include btn-barre($clr, -45deg, 32px, 4px);
+    @include btn-barre($clr, -45deg, 32px, 4px, 22px, 7px);
     background-color: $clr;
   }
   &::after {
-    @include btn-barre($clr, 45deg, 32px, 4px);
+    @include btn-barre($clr, 45deg, 32px, 4px, 22px, 7px);
     background-color: $clr;
   }
   &:hover::before, &:hover::after {
@@ -108,8 +110,15 @@
   }
   #chvr-gau, #chvr-dro {
     color: $clr-pri;
-    @include mob-max {
+    @include tab-max {
       font-size: 2em;
     }
   }
+}
+
+// Pseudo-élément inséré dans les conteneurs flex avec "space-between"
+@mixin after-flex {
+  content: "";
+  width: 350px;
+  height: 1px;
 }

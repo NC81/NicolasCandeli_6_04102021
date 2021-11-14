@@ -2,10 +2,10 @@
 .btn {
   width: 170px;
   line-height: 69px;
+  font-size: 1.125em;
   background-color: $clr-pri;
   border-radius: 5px;
   border: none;
-  font-size: 1.125em;
   font-weight: 700;
   color: white;
   @include tab-max {
@@ -15,26 +15,42 @@
     background-color: $clr-sec;
     color: black;
   }
+  // Bouton de redirection vers <main> (page d'accueil)
+  &--acc {
+    display: none;
+    position: fixed;
+    top: 6px;
+    right: 0;
+    left: 0;
+    a {
+      display: block;
+      width: 182px;
+      line-height: 30px;
+      margin: 0 auto;
+      text-align: center;
+    }
+  }
   &--pho {
     position: absolute;
+    font-size: 1.25em;
     right: -193px;
     top: 0;
     @include tab-max {
       position: fixed;
+      font-size: 1.125em;
       right: initial;
       top: initial;
       bottom: 30px;
       left: calc(50% - 85px);
     }
   }
-  // Bouton de sélection du menu déroulant
-  &--galerie { 
+  // Bouton de sélection du menu déroulant (page photographe)
+  &--galerie {
     position: absolute;
     top: -14px;
     left: 96px;
     padding: 0 20px 0 20px;
     text-align: left;
-    cursor: pointer;
     &__texte {
       font-weight: 700;
     }
@@ -42,6 +58,17 @@
       position: absolute;
       right: 18px;
       line-height: 69px;
+      @include tab-max {
+        line-height: 35px
+      }
+    }
+    .fa-chevron-up {
+      position: absolute;
+      display: none;
+      z-index: 1;
+      right: 18px;
+      line-height: 69px;
+      pointer-events: none;
       @include tab-max {
         line-height: 35px
       }
@@ -54,7 +81,7 @@
   } 
 }
 
-// Boutons de fermeture des modales
+// Boutons de fermeture des modales (page photographe)
 .btn-ferme--form {
   @include btn-ferme(white, 28px, 30px);
   @include tab-max {
@@ -63,8 +90,8 @@
 }
 .btn-ferme--carrou {
   @include btn-ferme($clr-pri, 0, -80px);
-  @include mob-max {
-    @include btn-ferme--mini($clr-pri, 10px, -50px);
+  @include tab-max {
+    @include btn-ferme--mini($clr-pri, 0, -50px);
   }
 }
 
@@ -81,6 +108,7 @@
   border: none;
   color: white;
   padding: 10px;
+  z-index: 1;
   @include tab-max {
     top: -5px;
     height: 110px;
@@ -91,8 +119,8 @@
     line-height: 50px;
     font-weight: 700;
     cursor: pointer;
-    &:hover, &:focus {
-     font-size: 1.125em;
+    &:focus {
+     font-size: 1.25em;
     }
     @include tab-max {
       line-height: 35px
@@ -102,22 +130,41 @@
       border-bottom: 1px solid white;
     }
   }
-  .fa-chevron-up {
-    position: absolute;
-    top: 0;
-    right: 18px;
-    line-height: 69px;
-    pointer-events: none;
+}
+
+// Boutons d'étiquette
+.header__liste-etiq {
+  button {
+    @include btn-etiq(3px, 2px);
+  }
+  .etiq-cont {
+    @include tags;
+  }
+}
+.vignette__liste-etiq {
+  button {
+    @include btn-etiq(0, 2px);
+  }
+  .etiq-cont {
+    @include tags;
+  }
+}
+.fiche__liste-etiq {
+  button {
+    @include btn-etiq(0, 2px);
+  }
+  .etiq-cont--pho {
+    @include tags(1.125em, 12px);
     @include tab-max {
-      line-height: 35px
+      @include tags(0.813em, 11px);
     }
   }
 }
 
-// Chevrons du carrousel
+// Chevrons du carrousel (page photographe)
 .btn-chvr {
   @include btn-chevron(96px);
-  @include mob-max {
+  @include tab-max {
     @include btn-chevron(48px);
   }
 }

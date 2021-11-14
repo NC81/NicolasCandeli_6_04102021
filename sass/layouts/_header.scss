@@ -1,23 +1,27 @@
 .header {
   display: flex;
-  margin: 0 35% 0 0;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 33% 0 3%;
+  @include tab-max {
+    align-items: initial;
+  }
+  @include mob-max {
+    padding-left: initial;
+  }
+  a {
+    width: fit-content;
+  }
   nav {
-    margin-left: 86px;
-    line-height: 25px;
+    margin-left: 45px;
     @include tab-max {
       width: 90%;
       margin: 18px auto 50px auto;
     }
   }
-  &__liste {
+  &__liste-etiq {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    li:focus > .etiq-cont {
-      border: 2px solid $clr-pri;
-    }
-    .etiq-cont {
-      @include tags(0.813em, 11px);
-    }
   }
 }

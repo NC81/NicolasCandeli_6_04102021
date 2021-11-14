@@ -9,12 +9,13 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet" />
         <link rel="shortcut icon" href="#">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
 
     <body>
         <div class="bloc-page">
 
-            <header class="header" role="banner">
+            <header class="header">
                 <a aria-label="FishEye - Page d'accueil" href="index.html">
                     <svg role="img" width="200" height="50" viewBox="0 0 200 50" fill="none" xmlns="http://www.w3.org/2000/svg" aria-describedby="titre description">
                         <title id="titre">FishEye</title>
@@ -29,47 +30,50 @@
                     </svg>
                 </a>
                 <nav>
-                    <ul class="header__liste">
-                        <li role="switch" aria-checked="false" aria-labelledby="acc-portrait" tabindex="0" >    
-                            <span class="etiq-cont" data-checked="false">#Portrait</span>
-                            <span id="acc-portrait" class="lect-ecran">Photographes de type Portrait</span>
-                        </li>
-                        <li role="switch" aria-checked="false" aria-labelledby="acc-art" tabindex="0">                            
-                            <span class="etiq-cont" data-checked="false">#Art</span>
-                            <span id="acc-art" class="lect-ecran">Photographes de type art</span>
-                        </li>
-                        <li role="switch" aria-checked="false" aria-labelledby="acc-faschion" tabindex="0">                           
-                            <span class="etiq-cont" data-checked="false">#Fashion</span>
-                            <span id="acc-faschion" class="lect-ecran">Photographes de type faschion</span>
-                        </li>
-                       <li role="switch" aria-checked="false" aria-labelledby="acc-architecture" tabindex="0">                            
-                            <span class="etiq-cont" data-checked="false">#Architecture</span>
-                            <span id="acc-architecture" class="lect-ecran">Photographes de type architecture</span>
-                        </li>
-                        <li role="switch" aria-checked="false" aria-labelledby="acc-travel" tabindex="0">                           
-                            <span class="etiq-cont" data-checked="false">#Travel</span>
-                            <span id="acc-travel" class="lect-ecran">Photographes de type travel</span>
-                        </li>
-                        <li role="switch" aria-checked="false" aria-labelledby="acc-sport" tabindex="0">                            
-                            <span class="etiq-cont" data-checked="false">#Sport</span>
-                            <span id="acc-sport" class="lect-ecran">Photographes de type sport</span>
-                        </li>
-                        <li role="switch" aria-checked="false" aria-labelledby="acc-animals" tabindex="0">
-                            <span class="etiq-cont" data-checked="false">#Animals</span>
-                            <span id="acc-animals" class="lect-ecran">Photographes de type animals</span>
-                        </li>
-                        <li role="switch" aria-checked="false" aria-labelledby="acc-events" tabindex="0">
-                            <span class="etiq-cont" data-checked="false">#Events</span>
-                            <span id="acc-events" class="lect-ecran">Photographes de type events</span>
-                        </li>
-                    </ul>
+                    <div class="header__liste-etiq" role="list">
+                        <button aria-pressed="false" aria-labelledby="acc-portrait">
+                            <span class="etiq-cont">#Portrait</span>
+                            <span id="acc-portrait" class="lect-ecr">Filtrer les photographes de type portrait</span>
+                        </button>
+                        <button aria-pressed="false" aria-labelledby="acc-art">
+                            <span class="etiq-cont">#Art</span>
+                            <span id="acc-art" class="lect-ecr">Filtrer les photographes de type art</span>
+                        </button>
+                        <button aria-pressed="false" aria-labelledby="acc-fashion">
+                            <span class="etiq-cont">#Fashion</span>
+                            <span id="acc-fashion" class="lect-ecr">Filtrer les photographes de type mode</span>
+                        </button>
+                       <button aria-pressed="false" aria-labelledby="acc-architecture">
+                            <span class="etiq-cont">#Architecture</span>
+                            <span id="acc-architecture" class="lect-ecr">Filtrer les photographes de type architecture</span>
+                        </button>
+                        <button aria-pressed="false" aria-labelledby="acc-travel">
+                            <span class="etiq-cont">#Travel</span>
+                            <span id="acc-travel" class="lect-ecr">Filtrer les photographes de type voyage</span>
+                        </button>
+                        <button aria-pressed="false" aria-labelledby="acc-sport">
+                            <span class="etiq-cont">#Sport</span>
+                            <span id="acc-sport" class="lect-ecr">Filtrer les photographes de type sport</span>
+                        </button>
+                        <button aria-pressed="false" aria-labelledby="acc-animals">
+                            <span class="etiq-cont">#Animals</span>
+                            <span id="acc-animals" class="lect-ecr">Filtrer les photographes de type animaux</span>
+                        </button>
+                        <button aria-pressed="false" aria-labelledby="acc-events">
+                            <span class="etiq-cont">#Events</span>
+                            <span id="acc-events" class="lect-ecr">Filtrer les photographes de type évènements</span>
+                        </button>
+                    </div>
                 </nav>
             </header>
 
-            <main class="acc-main">
-                <h1>Nos Photographes</h1>
-                <section id="acc-sct"></section>
+            <main class="acc-main" id="main">
+                <section class="acc-main__sect" id="acc-sct">
+                    <h1>Nos Photographes</h1>
+                </section>
             </main>
+
+            <aside class="btn--acc"><a class="btn" href="#main">Passer au contenu</a></aside>
 
         </div>
         

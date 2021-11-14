@@ -10,12 +10,13 @@
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />        
         <link rel="shortcut icon" href="#">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     
     <body>
         <div class="bloc-page" aria-hidden="false">
             
-            <header class="header" role="banner">
+            <header class="header">
                 <a aria-label="FishEye - Page d'accueil" href="index.html">
                     <svg role=img width="200" height="50" viewBox="0 0 200 50" fill="none" xmlns="http://www.w3.org/2000/svg" aria-describedby="titre description">
                         <title id="titre">FishEye</title>
@@ -32,80 +33,80 @@
             </header>
 
             <main class="pho-main">
-                
-                <aside class="infosup">
-                    <p><span class="infosup__cœurs"></span><span class="fas fa-heart" aria-label="likes"></span></p>
-                    <p><span class="infosup__prix">300</span>€ / jour</p>
-                </aside>
-           
+
                 <article class="fiche">
                     <div>
-                        <h1></h1>
+                        <h1>Photographe</h1>
                         <p class="fiche__lieu"></p>
                         <p class="fiche__citation"></p>
-                        <ul class="fiche__liste" role="listbox"></ul>
+                        <div class="fiche__liste-etiq" role="list"></div>
                         <button class="btn btn--pho">Contactez-moi</button>
                     </div>
                     <img class="present-img present-img--pho" src="https://via.placeholder.com/100" alt="Photo du photographe" />
                 </article>
 
+                <aside class="infosup">
+                    <p><span class="infosup__cœurs"></span><span class="fas fa-heart fa-sm" role="img" aria-label="likes"></span></p>
+                    <p><span class="infosup__prix">300</span>€ / jour</p>
+                </aside>
+
                 <section class="galerie" id="galerie">
-                    <div class="galerie-tri">Trier par
-                        <button class="btn btn--galerie" aria-label="Ouvre le menu" aria-controls="menu" aria-haspopup="listbox" aria-expanded="false">
-                            <span class="btn--galerie__texte">Popularité</span>
+                    <div class="galerie__tri">
+                        <h2 id="titre-galerie">Trier par</h2>
+                        <button class="btn btn--galerie" aria-label="Médias triés par Popularité" aria-controls="menu" aria-haspopup="listbox" aria-expanded="false">
+                            <span id="btn-select" class="btn--galerie__texte">Popularité</span>
                             <span class="fas fa-chevron-down" aria-hidden="true"></span>
+                            <span class="fas fa-chevron-up" aria-hidden="true"></span>
                         </button>
-                        <ul class="menu-liste" id="menu" role="listbox" aria-activedescendant="popularité" tabindex="0">
+                        <ul class="menu-liste" id="menu" role="listbox" aria-labelledby="titre-galerie" aria-activedescendant="menu-popu" tabindex="0">
                             <li id="menu-popu" aria-selected="true" role="option" tabindex="-1">Popularité</li>
                             <li id="menu-date" aria-selected="false" role="option" tabindex="-1">Date</li>
                             <li id="menu-titre" aria-selected="false" role="option" tabindex="-1">Titre</li>
-                            <span class="fas fa-chevron-up" aria-hidden="true"></span>
                         </ul>
                     </div>
-                    <div class="galerie-cont">
-                    </div>
+                    <div class="galerie__cont"></div>
                 </section>
-              
-                <div class="modale-contact" aria-labelledby="titre-form" aria-hidden="true" role="dialog" >
-                    <form class="modale-contact__form">
-                        <h1 id="titre-form"></h1>
-                        <p>
-                            <label for="prenom" id="label-prenom">Prénom</label>
-                            <input tabindex="0" type="text" name="prenom" id="prenom" aria-labelledby="label-prenom" aria-describedby="format-nom-prenom" required />
-                            <span class="lect-ecran" id="format-nom-prenom">Le nombre de caractère doit être compris entre 2 et 50</span>
-                        </p>
-                        <p>
-                            <label for="nom" id="label-nom">Nom</label>
-                            <input tabindex="0" type="text" name="nom" id="nom" aria-labelledby="label-nom" aria-describedby="format-nom-prenom" required />
-                        </p>
-                        <p>
-                            <label for="email" id="label-email">Email</label>
-                            <input tabindex="0" type="text" name="email" id="email" aria-labelledby="label-email" aria-describedby="format-email" required />
-                            <span class="lect-ecran" id="format-email">Veuillez entrer un email valide</span>
-                        </p>
-                        <p>
-                            <label for="message" id="label-message">Votre message</label>
-                            <textarea tabindex="0" name="message" id="message" aria-labelledby="label-message" aria-describedby="format-message" required></textarea>
-                            <span class="lect-ecran" id="format-message">Veuillez entrer le message à envoyer</span>
-                        </p>
-                        <button tabindex="0" class="btn btn-envoi">Envoyer</button>
-                        <button aria-label="Fermer" tabindex="0" class="btn-ferme--form"></button>
-                    </form>
-                </div>
-                
-                <div class="modale-carrous" aria-label="Vue aggrandissante de l'image" aria-hidden="true" role="dialog">
-                    <div class="modale-carrous__cont" aria-label="La sélection du photographe">
-                        <figure><figcaption class="modale-carrous__descr"></figcaption></figure>
-                        <button aria-label="Précédent" class="btn-chvr btn-chvr--gau">
-                            <span id="chvr-gau" class="fas fa-chevron-left fa-4x" aria-hidden="true"></span></button>
-                        <button aria-label="Suivant" class="btn-chvr btn-chvr--dro">
-                            <span id="chvr-dro" class="fas fa-chevron-right fa-4x"></span></button>
-                        <button aria-label="Fermer" class="btn-ferme--carrou" aria-hidden="true"></button>
-                    </div>
-                </div>
-            
+
             </main>
 
+        </div>
+
+        <div class="modale-contact" aria-labelledby="titre-form" aria-hidden="true" role="dialog" tabindex="0">
+            <form class="modale-contact__form">
+                <h2 id="titre-form" aria-hidden="true">Photographe</h2>
+                <button aria-label="Fermer le formulaire" class="btn-ferme--form"></button>
+                <p>
+                    <label for="prenom" id="label-prenom">Prénom</label>
+                    <input type="text" name="prenom" id="prenom" aria-labelledby="label-prenom" aria-describedby="format-nom-prenom" required />
+                    <span class="lect-ecr" id="format-nom-prenom">Le nombre de caractère doit être compris entre 2 et 50</span>
+                </p>
+                <p>
+                    <label for="nom" id="label-nom">Nom</label>
+                    <input type="text" name="nom" id="nom" aria-labelledby="label-nom" aria-describedby="format-nom-prenom" required />
+                </p>
+                <p>
+                    <label for="email" id="label-email">Email</label>
+                    <input type="email" name="email" id="email" aria-labelledby="label-email" aria-describedby="format-email" required />
+                    <span class="lect-ecr" id="format-email">Veuillez entrer un email valide</span>
+                </p>
+                <p>
+                    <label for="message" id="label-message">Votre message</label>
+                    <textarea name="message" id="message" aria-labelledby="label-message" aria-describedby="format-message" required></textarea>
+                    <span class="lect-ecr" id="format-message">Veuillez entrer un message composé d'au moins 20 caractères</span>
+                </p>
+                <button class="btn btn-envoi">Envoyer</button>
+            </form>
+        </div>
+        
+        <div class="modale-carrous"  aria-label="Vue aggrandie" aria-hidden="true" role="dialog">
+            <div class="modale-carrous__cont">
+                <button aria-label="Fermer le carrousel" class="btn-ferme--carrou"></button>
+                <button aria-label="Média précédent" class="btn-chvr btn-chvr--gau">
+                    <span id="chvr-gau" class="fas fa-chevron-left fa-4x" aria-hidden="true"></span></button>
+                <figure tabindex="0"><figcaption id="titre-fig" class="modale-carrous__descr"></figcaption></figure>            
+                <button aria-label="Média suivant" class="btn-chvr btn-chvr--dro">
+                    <span id="chvr-dro" class="fas fa-chevron-right fa-4x" aria-hidden="true"></span></button>
+            </div>
         </div>
 
         <script src="page-pho__base.js"></script>

@@ -1,33 +1,32 @@
-// Conteneur de la galerie
+// Conteneur des éléments <figure> de la galerie
 .galerie {
-  padding-top: 20px; 
-  .galerie-tri {
-    position: relative;
-    font-size: 1.125em;
-    font-weight: 700;
+  padding-top: 10px;
+  @include tab-max {
+    padding-top: 20px;
   }
-  .galerie-cont {
+  &__tri {
+    position: relative;
+    #titre-galerie {
+      font-size: 1.125em;
+      font-weight: 700;
+    }
+  }
+  &__cont {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    // gap: calc((100% - 1050px) / 2);
     gap: 2%;
     margin-top: 20px;
-    @include tab-max {
-      margin-top: 40px;
-    }
     @include mob-max {
       flex-direction: column;
-      margin-top: 40px;
     }
     &::after {
-      content: "";
-      width: 350px;
+    @include after-flex;
     }
   }
 }
 
-// Informations supplémentaires (nombre de "j'aime" et prix)
+// Informations supplémentaires (nombre de "likes" et prix)
 .infosup {
   position: fixed;
   bottom: 0;

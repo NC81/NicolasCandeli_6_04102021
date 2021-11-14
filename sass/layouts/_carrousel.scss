@@ -10,6 +10,7 @@
   background-color: white;
   justify-content: center;
   align-items: center;
+  z-index: 2;
   &__cont {
     max-width: 70%;
     position: relative;
@@ -22,8 +23,7 @@
     }
   }
   &__descr {
-    display: flex;
-    font-size: 1em;
+    font-size: 1.5em;
     max-width: 75%;
     @include mob-max {
       font-size: 0.875em;

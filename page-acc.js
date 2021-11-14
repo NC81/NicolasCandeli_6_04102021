@@ -1,50 +1,61 @@
-const photographes = [];
-const pageBlock = document.querySelector(".bloc-page");
+const photographes = []; /* Recense toutes les informations des photographes */
+const lienPageAccueil = document.querySelector(".header > a");
 
 // Affiche le contenu JSON pour la page d'accueil
-let affichePageAccueil = () => {
+const affichePageAccueil = () => {
   fetch("FishEyeData.json").then(function(res) {
     if (res.ok) {
       console.log("res.ok(page-acc)");
       return res.json();
     }
   })
+  // Exploitation du JSON
   .then(function(data) {
     for (let i=0; i < data.photographers.length; i++) {
-      photographes.push(data.photographers[i]);  
+      photographes.push(data.photographers[i]);  /* Rangement des informations des photographes */
     }
+    return photographes;
+  })
+  // Remplissage de la page et manipulation du DOM
+  .then(function(photographes) {
+    affichage.controle(photographes); /* Affichage de la page */
+    vignettes.filtre(); /* Activation du filtrage par les étiquettes */
 
-    accueil.affichage();
-    vignettes.filtre();
+    lienPageAccueil.focus();
   })
   .catch(function(err) {
-  console.log("erreur fetch(page-acc)", err);
+    console.error("erreur fetch(page-acc)", err);
   });
 }
 affichePageAccueil();
 
+// Permet d'ajouter plusieurs attributs à un élément
+const setAttributes = (elt, attrs) => {
+  for(let cle in attrs) {
+    elt.setAttribute(cle, attrs[cle]);
+  }
+}
+
 // Méthodes affichant la page
-class affichageAccueil {
+class affichagePageAccueil {
   // Construction du DOM
-  structure() {
+  structureVignettes(pho) {
     // eslint-disable-next-line no-unused-vars
-    for(let _pho of photographes) {
-      // Création de la structure HTML
+    for(let t of pho) {
+      // Création de la structure HTML pour chaque vignette
       const sectionPageAccueil = document.querySelector(".acc-main section");
       const nouveauDiv = document.createElement("div");
       sectionPageAccueil.appendChild(nouveauDiv);
-      nouveauDiv.innerHTML = "<a><img><h2></h2></a><p></p><p></p><p></p><ul></ul>";
+      nouveauDiv.innerHTML = "<a><img><h2></h2></a><p></p><p></p><p></p><div></div>";
       // Nommage du DOM
-      nouveauDiv.setAttribute("class", "vignette");
-      nouveauDiv.firstChild.setAttribute("class", "vignette__lien");
-      nouveauDiv.firstChild.firstChild.setAttribute("class", "present-img");
-      nouveauDiv.lastChild.setAttribute("class", "vignette__liste");
+      nouveauDiv.classList.add("vignette");
+      nouveauDiv.firstChild.classList.add("vignette__lien");
+      nouveauDiv.firstChild.firstChild.classList.add("present-img");
+      setAttributes(nouveauDiv.lastChild, {"class": "vignette__liste-etiq", "role": "list"});
     }
   }
   // Remplissage à partir des données JSON
-  affichage() {
-    this.structure();
-    // Génération de fiche pour chaque photographe
+  remplitVignettes(pho) {
     // DOM
     const nomsPhotographePageAccueil = document.querySelectorAll(".vignette__lien h2");
     const portraitsPageAccueil = document.querySelectorAll(".present-img"); 
@@ -52,44 +63,55 @@ class affichageAccueil {
     const liensPhotographePageAccueil = document.querySelectorAll(".vignette__lien");
     const citationsPhotographePageAccueil = document.querySelectorAll(".vignette p:nth-of-type(2)");
     const prixPhotographePageAccueil = document.querySelectorAll(".vignette p:nth-of-type(3)"); 
-    const listeetiquetteContenusPageAccueil = document.querySelectorAll(".vignette__liste");
+    const listeetiquetteContenusPageAccueil = document.querySelectorAll(".vignette__liste-etiq");
     // Exploitation du contenu JSON pour chaque photographe
-    for(let p=0; p < photographes.length; p++) {
-      let photographeId = photographes[p].id;
-      // Remplissage des fiches (nom, portrait, lieu, citation, prix) 
-      nomsPhotographePageAccueil[p].textContent = photographes[p].name;
-      portraitsPageAccueil[p].src = "./images/id_photos/" + photographes[p].portrait;
-      lieuxPhotographePageAccueil[p].textContent = photographes[p].city + ", " + photographes[p].country;
-      citationsPhotographePageAccueil[p].textContent = photographes[p].tagline;
-      prixPhotographePageAccueil[p].textContent = photographes[p].price + " €";
-      // Inscription de l'ID et du chemin de navigation
-      liensPhotographePageAccueil[p].setAttribute("data-id", photographes[p].id);
+    for(let p=0; p < pho.length; p++) {
+      const photographeId = pho[p].id;
+      // Remplissage des vignettes (nom, portrait, lieu, citation, prix)
+      nomsPhotographePageAccueil[p].textContent = pho[p].name;
+      portraitsPageAccueil[p].src = "./images/id_photos/" + pho[p].portrait;
+      lieuxPhotographePageAccueil[p].textContent = pho[p].city + ", " + pho[p].country;
+      citationsPhotographePageAccueil[p].textContent = pho[p].tagline;
+      prixPhotographePageAccueil[p].textContent = pho[p].price + " €";
+      // Inscription de l'ID dans l'URL (page photographe)
       liensPhotographePageAccueil[p].setAttribute("href", "photographe.html?phoID=" + photographeId);
       // Création des étiquettes
-      for(let t=0; t < photographes[p].tags.length; t++) {
-      const nouveauLi = document.createElement("li");
-      listeetiquetteContenusPageAccueil[p].appendChild(nouveauLi);
-      nouveauLi.innerHTML= "<span>#" + photographes[p].tags[t] + "</span>" + "<span>Filtrer les photographes par " + photographes[p].tags[t] + "</span>"
-      setAttributes(nouveauLi, {"role": "switch", "aria-checked": "false", "aria-labelledby": "acc-" + photographes[p].tags[t], "tabindex": "0"});
-      setAttributes(nouveauLi.firstChild, {"class": "etiq-cont", "data-checked": "false"});
-      setAttributes(nouveauLi.lastChild, {"id": "acc-" + photographes[p].tags[t], "class": "lect-ecran"});    
+      for(let t=0; t < pho[p].tags.length; t++) {
+      const nouveauBouton = document.createElement("button");
+      listeetiquetteContenusPageAccueil[p].appendChild(nouveauBouton);
+      nouveauBouton.innerHTML= "<span>#" + pho[p].tags[t] + "</span>";
+      setAttributes(nouveauBouton, {"aria-pressed": "false", "aria-labelledby": "acc-" + pho[p].tags[t], "tabindex": "0"});
+      nouveauBouton.firstChild.classList.add("etiq-cont");
       }
     }
   }
-}
-const accueil= new affichageAccueil();
-
-// Permet d'ajouter plusieurs attributs en une ligne
-let setAttributes = (el, attrs) => {
-  for(var key in attrs) {
-    el.setAttribute(key, attrs[key]);
+  afficheBouton() {
+    const aside = document.querySelector("aside");
+    window.addEventListener("scroll", () => {
+      if(window.scrollY >= 500) {
+        aside.dataset.visible = "true";
+      } else {
+        aside.dataset.visible = "false";
+      }
+      if(aside.dataset.visible === "true") {
+        aside.style.display = "block";
+      } else {
+        aside.style.display = "none";
+      }
+    });
+  }
+  controle(pho) {
+    this.structureVignettes(pho);
+    this.remplitVignettes(pho);
+    this.afficheBouton();
   }
 }
+const affichage = new affichagePageAccueil();
 
 // Méthodes triant selon l'étiquette
-let etiquettesTableau = [];
+const etiquettesTableau = []; /* Actualise toutes les étiquettes activées */
 class FiltrageVignettes {
-// Définit les vignettes à afficher et à effacer
+// Définition des vignettes à afficher et à effacer
   definit() {
     const etiquettesDom = document.querySelectorAll(".etiq-cont");
     const vignettes = document.querySelectorAll(".vignette");
@@ -101,9 +123,9 @@ class FiltrageVignettes {
         }
       }
     }
-    // Vérification des classes de chaque vignette pour définir l'attribut "data-correct"
+    // Vérification de la longueur des classes de chaque vignette pour définir l'attribut "data-correct"
     for (let vig of vignettes) {
-      let listeDeClasses = vig.className.split(' '); 
+      const listeDeClasses = vig.className.split(' ');
       if ((listeDeClasses.length - 1) === etiquettesTableau.length) {
         vig.setAttribute("data-correct", "true");
       } else {
@@ -111,60 +133,57 @@ class FiltrageVignettes {
       }
     }
   }
-  // Affichage du DOM selon la valeur de l'attribut "data-correct"
+  // Affichage des vignettes selon la valeur de leur attribut "data-correct"
   affiche() {
     const vignettes = document.querySelectorAll(".vignette");
-    for (let v of vignettes) {
-      if (v.dataset.correct === "true") {
-        v.style.display = "block";
+    for (let vig of vignettes) {
+      if (vig.dataset.correct === "true") {
+        vig.style.display = "block";
       } else {
-        v.style.display = "none";
+        vig.style.display = "none";
       }
     }
   }
-  // Filtrage complet composé de l'évènement de cliquage
+  // Méthode globale de filtrage
   filtre() {
     const vignettes = document.querySelectorAll(".vignette");
-    const etiquettesDom = document.querySelectorAll(".etiq-cont");
-    pageBlock.addEventListener("click", (evt) => {
-      if ((evt.target.dataset.checked === "true") && (evt.target.className === "etiq-cont")) {
-        let etiquetteContenu = evt.target.textContent.toLowerCase();
-        // Assignation des attributs
-        evt.target.dataset.checked = false;
-        evt.target.parentElement.setAttribute("aria-checked", "false");
-        for (let etq of etiquettesDom) { 
-          if (etq.textContent.toLowerCase() == evt.target.textContent.toLowerCase()) {
-            etq.setAttribute("data-checked", "false");
+    const boutonsEtiquette = document.querySelectorAll("button");
+    const blocPage = document.querySelector(".bloc-page");
+    // Évènement de cliquage du bouton d'étiquette
+    blocPage.addEventListener("click", (evt) => {
+      // ... si le bouton a déjà été pressé
+      if ((evt.target.getAttribute("aria-pressed") === "true") && (evt.target.tagName === "BUTTON")) {
+        const etiquetteContenu = evt.target.children[0].textContent.toLowerCase();
+        // Assignation de l'attribut "aria-pressed"
+        evt.target.setAttribute("aria-pressed", "false");
+        for (let btn of boutonsEtiquette) {
+          if (btn.children[0].textContent.toLowerCase() === evt.target.children[0].textContent.toLowerCase()) {
+            btn.setAttribute("aria-pressed", "false");
           }
         }
         // Modification du tableau d'étiquettes
         const index = etiquettesTableau.indexOf(etiquetteContenu);
         etiquettesTableau.splice(index, 1);
-        console.log("tableau d'étiquettes", etiquettesTableau);
+        // console.log("tableau d'étiquettes", etiquettesTableau);
         for (let vig of vignettes) {
           if (vig.classList.contains("" + etiquetteContenu))  {
             vig.classList.remove("" + etiquetteContenu);
           }
         }
-      } else if ((evt.target.dataset.checked === "false" ) && (evt.target.className === "etiq-cont")) {
-        evt.target.parentElement.setAttribute("aria-checked", "true");
-        for (let etq of etiquettesDom) {
-          if (etq.textContent.toLowerCase() == evt.target.textContent.toLowerCase()) {
-            etq.dataset.checked = true;
+      // ... si le bouton n'a pas été pressé
+      } else if ((evt.target.getAttribute("aria-pressed") === "false") && (evt.target.tagName === "BUTTON")) {
+        evt.target.setAttribute("aria-pressed", "true");
+        for (let btn of boutonsEtiquette) {
+          if (btn.children[0].textContent.toLowerCase() === evt.target.children[0].textContent.toLowerCase()) {
+            btn.setAttribute("aria-pressed", "true");
           }
         }
-        let etiquetteCiblee = evt.target.textContent.toLowerCase();
-        etiquettesTableau.push(etiquetteCiblee);
-        console.log("tableau d'étiquettes", etiquettesTableau);
+        const etiquetteCible = evt.target.children[0].textContent.toLowerCase();
+        etiquettesTableau.push(etiquetteCible);
+        // console.log("tableau d'étiquettes", etiquettesTableau);
       }
       this.definit();
-      this.affiche(); 
-    });
-    // Sélection de l'étiquette par le clavier
-    pageBlock.addEventListener("keydown", (evt) => {
-      if ((evt.target.tagName === "LI") && (evt.key === "Enter")) {
-        evt.target.children[0].click();
-      }
+      this.affiche();
     });
   }
 }

@@ -93,7 +93,7 @@
       "likes": 72,
       "date": "2013-08-12",
       "price": 55,
-      "alt": "Une femme avec une robe constituée de lignes noires, blanches et jaunes pose devant un mur carrelé"
+      "alt": "Une femme avec une robe traversée de lignes verticales noires, blanches et jaunes pose devant un mur carrelé"
     },
     {
       "id": 9275938,
@@ -179,7 +179,7 @@
       "image": "Sport_2000_with_8.jpg",
       "tags": ["sport"],
       "likes": 52,
-      "date": "2013-02-30",
+      "date": "2013-02-28",
       "price": 70,
       "alt": "5 rameurs vus de haut sur un aviron de 8"
     },
@@ -192,7 +192,7 @@
       "likes": 58,
       "date": "2018-07-17",
       "price": 70,
-      "alt": "Une femme noire levant le bras gauche devant un homme blanc levant le bras droit"
+      "alt": "Une femme à la peau noire levant le bras gauche devant un homme blanc levant le bras droit"
     },
     {
       "id": 32958383,
@@ -203,7 +203,7 @@
       "likes": 11,
       "date": "2019-08-12",
       "price": 70,
-      "alt": "Une femme noire en robe longue de couleur rouge descendant un escalier en extérieur"
+      "alt": "Une femme à la peau noire en robe longue de couleur rouge vif descendant un escalier en extérieur"
     },
     {
       "id": 928587383,
@@ -303,7 +303,7 @@
       "likes": 99,
       "date": "2018-04-30",
       "price": 45,
-      "alt": "Une longue route sinueuse traversant une colline jaunâtre"
+      "alt": "Une longue route goudronnée traversant sinueusement une colline jaunâtre"
     },
     {
       "id": 23425523,
@@ -341,13 +341,13 @@
     {
       "id": 34513453,
       "photographerId": 527,
-      "title": "Shaw Potrait",
+      "title": "Shaw Portait",
       "image": "Portrait_Shaw.jpg",
       "tags": ["portrait"],
       "likes": 52,
       "date": "2017-04-21",
       "price": 45,
-      "alt": "En noir et blanc, le visage d'un homme regardant au loin avec une chaîne au cou posé sur son torse"
+      "alt": "En noir et blanc, le visage d'un homme scrutant au loin avec une chaîne au cou posée sur son torse"
     },
     {
       "id": 23523533,
@@ -358,7 +358,7 @@
       "likes": 95,
       "date": "2018-11-02",
       "price": 45,
-      "alt": "Une femme de couleur noire aux cheveux, sourcils et haut-de-corps blancs regarde l'objectif"
+      "alt": "Une femme de couleur noire aux cheveux, sourcils et haut-de-corps blancs regardant fixement l'objectif"
     },
     {
       "id": 525834234,
@@ -397,7 +397,7 @@
     {
       "id": 2525345343,
       "photographerId": 243,
-      "title": "Wednesday Potrait",
+      "title": "Wednesday Portrait",
       "image": "Portrait_Wednesday.jpg",
       "tags": ["portrait"],
       "likes": 34,
@@ -414,7 +414,7 @@
       "likes": 63,
       "date": "2019-04-07",
       "price": 45,
-      "alt": "Une femme à lunettes assise sur un fauteuil rouge regarde l'objectif à travers la vitre d'un restaurant"
+      "alt": "Une femme à lunettes assise sur un fauteuil rouge observant l'objectif à travers la vitre d'un restaurant"
     },
     {
       "id": 398847109,
@@ -492,7 +492,7 @@
       "likes": 25,
       "date": "2019-04-03",
       "price": 60,
-      "alt": "Une rue de Kyoto faisant face à une tour typique avec deux femmes en habits traditionnels sous un soleil plongeant"
+      "alt": "Une rue de Kyoto face à une pagode sous un soleil plongeant avec deux femmes en habits traditionnels"
     },
     {
       "id": 2523434,
@@ -514,7 +514,7 @@
       "likes": 33,
       "date": "2019-05-12",
       "price": 60,
-      "alt": "Un lac turquoise entouré de forêt faisant face à une montagne en arrière-plan"
+      "alt": "Un lac turquoise entouré de forêt face à une montagne en arrière-plan"
     },
     {
       "id": 356234343,
@@ -536,7 +536,7 @@
       "likes": 63,
       "date": "2019-06-26",
       "price": 60,
-      "alt": "Une ouverture en forme de voute donnant sur une ville lointaine au milieu d'un mur rempli de hiéroglyphes"
+      "alt": "Une ouverture en forme de voute au milieu d'un mur rempli de hiéroglyphes donnant sur une ville"
     },
     {
       "id": 6234234343,
@@ -547,7 +547,7 @@
       "likes": 52,
       "date": "2019-06-30",
       "price": 60,
-      "alt": "Un dôme doré caractéritique de l'architecture de Saint-Pétersbourg"
+      "alt": "Un dôme doré caractéristique de l'architecture de Saint-Pétersbourg"
     },
     {
       "id": 6525666253,
@@ -558,7 +558,7 @@
       "likes": 63,
       "date": "2019-07-20",
       "price": 60,
-      "alt": "Une ville placée sur une colline aride faisant face à des montagnes"
+      "alt": "Un village placé sur une colline face au flanc d'une montagne aride"
     },
     {
       "id": 98252523433,
@@ -569,7 +569,7 @@
       "likes": 88,
       "date": "2020-01-05",
       "price": 60,
-      "alt": "Vue en contre-plongée au pied de la tour de Pise sous un soleil couchant"
+      "alt": "Vue en contre-plongée de la tour de Pise sous un soleil couchant"
     },
     {
       "id": 9259398453,
@@ -580,7 +580,7 @@
       "likes": 57,
       "date": "2020-01-20",
       "price": 65,
-      "alt": "Vue plongeante montrant une voie d'autoroute avec ses bretelles traversant une ville"
+      "alt": "Vue plongeante d'une voie d'autoroute avec ses bretelles traversant une agglomération"
     },
     {
       "id": 3523523534,
@@ -603,7 +603,7 @@
       "likes": 150,
       "date": "2018-02-30",
       "price": 70,
-      "alt": "Une danseuse suspendue par la main à une corde s'entrainant à tournoyer en effectuant des figures de style"
+      "alt": "Une danseuse suspendue par la main à une corde s'entrainant à effectuer des figures de style"
     },
     {
       "id": 235234343,
@@ -614,7 +614,7 @@
       "likes": 101,
       "date": "2018-03-05",
       "price": 65,
-      "alt": "Vue plongeante avec une femme escaladant une paroie de roches une jambe dans le vide"
+      "alt": "Vue plongeante d'une femme escaladant une paroie de roches une jambe dans le vide"
     },
     {
       "id": 235343222,
@@ -625,7 +625,7 @@
       "likes": 103,
       "date": "2018-03-10",
       "price": 70,
-      "alt": "Un surfeur en pleine action sous une vague accroupi sur son surf"
+      "alt": "Un surfeur accroupi sur son surf en pleine action sous une vague"
     },
     {
       "id": 7775342343,
@@ -636,7 +636,7 @@
       "likes": 77,
       "date": "2018-04-16",
       "price": 50,
-      "alt": "Vue en contre-plongée d'un skieur écartant les bras en plein saut avec le ciel en arrière-plan"
+      "alt": "Vue en contre-plongée d'un skieur écartant les bras en plein saut avec un ciel bleu en arrière-plan"
     },
     {
       "id": 9253445784,
@@ -680,7 +680,7 @@
       "likes": 55,
       "date": "2018-05-10",
       "price": 72,
-      "alt": "Un lac artificiel à proximité d'un batiment moderne en forme de vague éclairé au cœur par une soleil couchant"
+      "alt": "Un lac artificiel à proximité d'un batiment moderne en forme de vague éclairé par une soleil couchant"
     },
     {
       "id": 222959233,
@@ -713,7 +713,7 @@
       "likes": 79,
       "date": "2018-05-21",
       "price": 80,
-      "alt": "Sous un ciel bleu, un pont relie les deux côtés d'un batiment blanc aux courbes sinusoïdales"
+      "alt": "Sous un ciel bleu, un pont reliant les deux côtés d'un batiment blanc aux courbes sinusoïdales"
     }
   ]
 }

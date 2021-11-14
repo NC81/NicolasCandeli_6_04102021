@@ -28,11 +28,12 @@
   width: 32%;
   max-width: 350px;
   @include tab-max {
-    margin-top: 10px;
+    margin-top: 20px;
     width: 48%;
     max-width: 48%;
   }
   @include mob-max {
+    margin-top: 10px;
     width: 100%;
     max-width: 100%;
   }
@@ -40,7 +41,7 @@
     display: block;
     cursor: pointer;
     &:focus {
-      outline: 4px solid $clr-pri;
+      outline: 2px dashed $clr-pri;
     }
   }
   img, video {
@@ -53,33 +54,33 @@
       height: 190px;
     }
   }
-  figcaption {
+  &__descr {
     display: flex;
     justify-content: space-between;
     color: $clr-pri;
     margin-top: 10px;
-  }
-  h2 {
-    max-width: 270px;
-    font-size: 1em;
+    font-size: 1.5em;
     @include tab-max {
+      font-size: 1em;
+    }
+    @include mob-max {
       font-size: 0.875em;
     }
-  }
-  p {
-    font-size: 1em;
-    cursor: pointer;
-    padding: 0 3px 0 3px;
-    @include tab-max {
-      font-size: 0.875em;
+    h3 {
+      max-width: 270px;
     }
-    &:focus {
-      color: white;
-      background-color: $clr-pri;
-      border-radius: 5px;
+    button {
+      font-size: 1em;
+      color: $clr-pri;
+      padding: 0 3px 0 3px;
+      &:focus {
+        color: white;
+        background-color: $clr-pri;
+        border-radius: 5px;
+      }
     }
-  }
-  span {
-    font-weight: 500;
+    span:first-of-type {
+      font-weight: 500;
+    }
   }
 }

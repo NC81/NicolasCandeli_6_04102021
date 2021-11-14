@@ -11,40 +11,38 @@
 }
 
 .acc-main {
-  margin: 110px 0 0 -30px;
+  margin: 110px -3.5%;
   @include tab-max {
     margin: 0;
   }
-  > h1 {
-    position: absolute;
-    top: 44px;
-    right: 5%;
-    font-size: 2.25em;
-    color: $clr-pri;
-    @include tab-max {
-      font-size: 1.8em;
-    }
-    @include mob-max {
-      font-size: 0.875em;
-      top: 58px;
-      right: 7%;
-    }
-  }
-  > section {
+  &__sect {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 10%;
-    // gap: calc((100% - 1050px) / 2);
-    @include mob-max {
-      flex-direction: column;
-    }
     @include tab-max {
       gap: 2%;
     }
+    @include mob-max {
+      flex-direction: column;
+    }
+    > h1 {
+      position: absolute;
+      top: 0;
+      right: 3%;
+      font-size: 2.25em;
+      color: $clr-pri;
+      @include tab-max {
+        font-size: 1.5em;
+        top: 10px;
+      }
+      @include mob-max {
+        font-size: 0.875em;
+        top: 17px;
+      }
+    }
     &::after {
-      content: "";
-      width: 300px;
+      @include after-flex;
     }
   }
 }

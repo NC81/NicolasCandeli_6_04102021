@@ -1,4 +1,4 @@
-// Modale du formulaire de contact
+// Modale du formulaire
 .modale-contact {
   display: none;
   position: fixed;
@@ -8,6 +8,7 @@
   top: 0;
   left: 0;
   right: 0;
+  z-index: 2;
   &__form {
     position: relative;
     max-width: 669px;
@@ -19,7 +20,11 @@
     @include tab-max {
       height: 740px;
     }
-    h1 {
+    @include mob-max {
+      margin: 0 auto;
+      height: auto;
+    }
+    h2 {
       font-size: 4em;
       line-height: 70px;
       margin-bottom: 28px;
@@ -41,7 +46,7 @@
       border: none;
       border-radius: 5px;
       margin-bottom: 3px;
-      padding: 5px;
+      padding: 0 5px;
       font-size: 1.5em;
       &:focus {
         outline: 4px solid $clr-pri;
@@ -62,10 +67,6 @@
       &:focus {
         outline: 4px solid $clr-pri;
       }
-    }
-    .lect-ecran {
-      position: absolute;
-      top: 10000px;
     }
   }
 }
