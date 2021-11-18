@@ -39,15 +39,15 @@ const affichePagePhotographe = () => {
   // Exploitation du JSON
   .then(function(data) {
     // Copie de l'objet JSON correspondant au photographe
-    for (let pho of data.photographers) {
-      if (pho.id == utils.idCourant()) {
-        photographe = pho;  /* Rangement des informations du photographe */
+    for (let photographer of data.photographers) {
+      if (photographer.id == utils.idCourant()) {
+        photographe = photographer;  /* Rangement des informations du photographe */
       }
     }
     // Copie des objets JSON correspondant aux médias du photographe dans un tableau
-    for (let med of data.media) {
-      if (med.photographerId == utils.idCourant()) {
-        medias.push(med); /* Rangement des médias du photographe */
+    for (let media of data.media) {
+      if (media.photographerId == utils.idCourant()) {
+        medias.push(media); /* Rangement des médias du photographe */
       }
     }
   })
@@ -113,29 +113,29 @@ class MediaARanger {
 // Créations de tableau
 class CreationTableaux {
   // Rangement des images et des vidéos à partir du tableau "medias"
-  rangeImages(med) {
-    for (let m of med) {
-      if ("image" in m) {
-        images.push(m); /* Rangement des images du photographe */
+  rangeImages(medias) {
+    for (let media of medias) {
+      if ("image" in media) {
+        images.push(media); /* Rangement des images du photographe */
       }
     }
     return images;
   }
-  rangeVideos(med) {
-    for (let m of med) {
-      if ("video" in m) {
-        videos.push(m); /* Rangement des vidéos du photographe */
+  rangeVideos(medias) {
+    for (let media of medias) {
+      if ("video" in media) {
+        videos.push(media); /* Rangement des vidéos du photographe */
       }
     }
     return videos;
   }
   // Remplissage du tableau "mediasTriables" pour le menu de filtrage
   rangeMediasTriables() { /* exported creeTableauMediasTriables */
-    for (let fig of galerieDom.children) {
-      const dom = fig;
-      const date = Date.parse(fig.dataset.date);
-      const titre = fig.lastChild.firstChild.textContent;
-      const cœurs = fig.lastChild.lastChild.firstChild.textContent;
+    for (let figure of galerieDom.children) {
+      const dom = figure;
+      const date = Date.parse(figure.dataset.date);
+      const titre = figure.lastChild.firstChild.textContent;
+      const cœurs = figure.lastChild.lastChild.firstChild.textContent;
       const mediaPret = new MediaARanger(dom, date, titre, cœurs); 
       mediasTriables.push(mediaPret); 
     }
@@ -145,19 +145,19 @@ class CreationTableaux {
 const tableau = new CreationTableaux();
 
 // Méthodes remplissant la page
-let m;
+let indexMedia; /* Index du média au sein des tableaux "images" et "videos" */
 class AffichagePagePhotographe {
   // Remplissage de la fiche de présentation du photographe
-  remplitFiche(pho) {
+  remplitFiche(photographe) {
     // Inscription des données JSON (nom, lieu, citation, prix, portrait)
-    nom.textContent = pho.name;
-    lieu.textContent = pho.city + ", " + pho.country;
-    citation.textContent = pho.tagline;
-    prix.textContent = pho.price;
-    portrait.src= "./images/id_photos/" + pho.portrait;
-    portrait.alt= "" + pho.name;
+    nom.textContent = photographe.name;
+    lieu.textContent = photographe.city + ", " + photographe.country;
+    citation.textContent = photographe.tagline;
+    prix.textContent = photographe.price;
+    portrait.src= "./images/id_photos/" + photographe.portrait;
+    portrait.alt= "" + photographe.name;
     // Création des étiquettes
-    for (let tag of pho.tags) {
+    for (let tag of photographe.tags) {
       const nouveauBouton = document.createElement("button");
       listeEtiquettes.appendChild(nouveauBouton); 
       nouveauBouton.innerHTML= "<span>#" + tag + "</span>" + "<span>Filtrer les médias de type " + tag + "</span>";
@@ -168,15 +168,15 @@ class AffichagePagePhotographe {
   }
   /////////FACTORY PATTERN/////////DEBUT/////////
   // Remplissage de la galerie
-  remplitGalerie(img, vid) {
+  remplitGalerie(image, video) {
     const nouvelleUsine = new Usine();
     // Création de la structure HTML et exploitation du contenu JSON pour chaque image
-    for (m=0; m < img.length; m++) {
+    for (indexMedia=0; indexMedia < image.length; indexMedia++) {
       const nouvelleImage = nouvelleUsine.creeFigure("image");
       nouvelleImage.creeImage();
     }
     // ... et pour chaque vidéo
-    for (m=0; m < vid.length; m++) {
+    for (indexMedia=0; indexMedia < video.length; indexMedia++) {
       const nouvelleVideo = nouvelleUsine.creeFigure("video");
       nouvelleVideo.creeVideo();
     }
@@ -223,16 +223,16 @@ class NouvelleImage {
       const nouveauImage = document.createElement("img");
       const titre = document.querySelectorAll(".fig-img h3");
       const cœursNombre = document.querySelectorAll(".fig-img button span:first-of-type");
-      nouveauFigure.firstChild.setAttribute("aria-label", images[m].title + ", vue aggrandie");
+      nouveauFigure.firstChild.setAttribute("aria-label", images[indexMedia].title + ", vue aggrandie");
       // Création de la balise <img>
       nouveauFigure.firstChild.appendChild(nouveauImage);
       const imageGalerie = document.querySelectorAll(".fig-img img");
       // Remplissage de la <figure>
-      titre[m].textContent = images[m].title;
-      cœursNombre[m].textContent = images[m].likes + " ";
-      imageGalerie[m].src = "./images/galeries/" + utils.changeNomEnPrenom(photographe.name) + "/" + "S_" + images[m].image;
-      imageGalerie[m].setAttribute("alt", images[m].alt);
-      utils.setAttributes(imageGalerie[m].parentNode.parentNode, {"data-tag": "#" + images[m].tags, "data-date": images[m].date});
+      titre[indexMedia].textContent = images[indexMedia].title;
+      cœursNombre[indexMedia].textContent = images[indexMedia].likes + " ";
+      imageGalerie[indexMedia].src = "./images/galeries/" + utils.changeNomEnPrenom(photographe.name) + "/" + "S_" + images[indexMedia].image;
+      imageGalerie[indexMedia].setAttribute("alt", images[indexMedia].alt);
+      utils.setAttributes(imageGalerie[indexMedia].parentNode.parentNode, {"data-tag": "#" + images[indexMedia].tags, "data-date": images[indexMedia].date});
     }
   }
 }
@@ -244,15 +244,15 @@ class NouvelleVideo {
       const nouveauVideo = document.createElement("video");
       const titre = document.querySelectorAll(".fig-vid h3");
       const cœursNombre = document.querySelectorAll(".fig-vid button span:first-of-type");
-      nouveauFigure.firstChild.setAttribute("aria-label", videos[m].title + ", vue aggrandie");
+      nouveauFigure.firstChild.setAttribute("aria-label", videos[indexMedia].title + ", vue aggrandie");
       // Création de la balise <video>
       nouveauFigure.firstChild.appendChild(nouveauVideo);
       const videoGalerie = document.querySelectorAll(".fig-vid video");
       // Remplissage de la <figure>
-      titre[m].textContent = videos[m].title;
-      cœursNombre[m].textContent = videos[m].likes + " ";
-      videoGalerie[m].src = "./images/galeries/" + utils.changeNomEnPrenom(photographe.name) + "/" + videos[m].video;
-      utils.setAttributes(videoGalerie[m].parentNode.parentNode, {"data-tag": "#" + videos[m].tags, "data-date": videos[m].date});
+      titre[indexMedia].textContent = videos[indexMedia].title;
+      cœursNombre[indexMedia].textContent = videos[indexMedia].likes + " ";
+      videoGalerie[indexMedia].src = "./images/galeries/" + utils.changeNomEnPrenom(photographe.name) + "/" + videos[indexMedia].video;
+      utils.setAttributes(videoGalerie[indexMedia].parentNode.parentNode, {"data-tag": "#" + videos[indexMedia].tags, "data-date": videos[indexMedia].date});
     }
   }
 }
@@ -274,27 +274,27 @@ class FiltrageMenu {
   }
   // Navigation par le clavier
   navigueParClavier() {
-    let i = 0;
+    let indexBoutonMenu = 0;
     listeMenu.addEventListener("keydown", (evt) => {
       evt.preventDefault();
       if ((evt.key === "ArrowDown") || (evt.key === "ArrowLeft")) {
-        if (i == (boutonsMenu.length - 1)) {
-          i = 0;
+        if (indexBoutonMenu == (boutonsMenu.length - 1)) {
+          indexBoutonMenu = 0;
         } else {
-          i++;
+          indexBoutonMenu++;
         }
-        boutonsMenu[i].focus();
+        boutonsMenu[indexBoutonMenu].focus();
       }
       if ((evt.key === "ArrowUp") || (evt.key === "ArrowRight")) {
-        if (i == 0) {
-          i = (boutonsMenu.length - 1);
+        if (indexBoutonMenu == 0) {
+          indexBoutonMenu = (boutonsMenu.length - 1);
         } else {
-          i--;
+          indexBoutonMenu--;
         }
-        boutonsMenu[i].focus();
+        boutonsMenu[indexBoutonMenu].focus();
       }
       if (evt.key === "Enter") {
-        boutonsMenu[i].click();
+        boutonsMenu[indexBoutonMenu].click();
       }
     });
   }
@@ -328,26 +328,26 @@ class FiltrageMenu {
       this.trieParTitre();
     }
     // Affichage des médias dans l'ordre souhaité
-    for (let med of mediasTriables) {
-      galerieDom.appendChild(med.dom);
+    for (let  media of mediasTriables) {
+      galerieDom.appendChild(media.dom);
     }
   }
   // Méthode globale automatisant le triage par type (popularité, date, cœurs)
   automatise() {
-    for (let btn of boutonsMenu) {
-      btn.addEventListener("click", () => {
-        boutonSelectionContenu.textContent = btn.textContent;
+    for (let bouton of boutonsMenu) {
+      bouton.addEventListener("click", () => {
+        boutonSelectionContenu.textContent = bouton.textContent;
         const type = boutonSelectionContenu.textContent;
         listeMenu.style.display = "none"; 
         chevronHaut.style.display = "none";
         utils.setAttributes(boutonSelection, {"aria-expanded": "false", "aria-label": "Médias triés par " + type});
-        listeMenu.setAttribute("aria-activedescendant", "" + btn.id);
+        listeMenu.setAttribute("aria-activedescendant", "" + bouton.id);
         this.trie(type);
         boutonSelection.focus();
       });
-      btn.addEventListener("focus", () => {
+      bouton.addEventListener("focus", () => {
         boutonsMenu.forEach(bouton => bouton.setAttribute("aria-selected", "false"));
-        btn.setAttribute("aria-selected", "true");
+        bouton.setAttribute("aria-selected", "true");
       });
     }
   }
@@ -360,13 +360,13 @@ class FiltrageEtiquettes {
   // Affiche les éléments <figure> selon la valeur de l'attribut "data-tag"
   affiche() {
     const elementsGalerie = galerieDom.children;
-    for (let elt of elementsGalerie) {
-      if ((elt.dataset.tag === etiquetteContenu) || (etiquetteContenu == null)) {
-        elt.style.display = "block";
-        elt.dataset.visible = true;
+    for (let element of elementsGalerie) {
+      if ((element.dataset.tag === etiquetteContenu) || (etiquetteContenu == null)) {
+        element.style.display = "block";
+        element.dataset.visible = true;
       } else {
-        elt.style.display = "none";
-        elt.dataset.visible = false;
+        element.style.display = "none";
+        element.dataset.visible = false;
       }
     }
   }
@@ -383,9 +383,9 @@ class FiltrageEtiquettes {
         evt.target.setAttribute("aria-pressed", "true");
         etiquetteContenu = evt.target.firstChild.textContent;
         // Désactive les étiquettes non-ciblées
-        for (let etq of etiquettes) {
-          if ((etq.getAttribute("aria-pressed") === "true") && (evt.target != etq)) {
-            etq.setAttribute("aria-pressed", "false");
+        for (let etiquette of etiquettes) {
+          if ((etiquette.getAttribute("aria-pressed") === "true") && (evt.target != etiquette)) {
+            etiquette.setAttribute("aria-pressed", "false");
             etiquetteContenu = evt.target.firstChild.textContent;
           }
         }
@@ -413,19 +413,19 @@ class AffichageCœurs {
   // Évènements permmettant d'ajouter un "like"
   additionne() {
   const cœursBoutons = document.querySelectorAll("figcaption button"); /* ... par la souris */
-    for (let btn of cœursBoutons) {
-      btn.addEventListener("click", () => {
-        sommeVignette = parseInt(btn.firstChild.textContent);
-        if (btn.getAttribute("aria-pressed") === "false") {
-          btn.setAttribute("aria-pressed", "true");
+    for (let bouton of cœursBoutons) {
+      bouton.addEventListener("click", () => {
+        sommeVignette = parseInt(bouton.firstChild.textContent);
+        if (bouton.getAttribute("aria-pressed") === "false") {
+          bouton.setAttribute("aria-pressed", "true");
           sommeVignette++;
-          btn.firstChild.textContent = sommeVignette + " ";
+          bouton.firstChild.textContent = sommeVignette + " ";
           this.afficheSomme();
         } 
-        else if (btn.getAttribute("aria-pressed") === "true") {
-          btn.setAttribute("aria-pressed", "false");
+        else if (bouton.getAttribute("aria-pressed") === "true") {
+          bouton.setAttribute("aria-pressed", "false");
           sommeVignette--;
-          btn.firstChild.textContent = sommeVignette + " ";
+          bouton.firstChild.textContent = sommeVignette + " ";
           this.afficheSomme();
         }
       });

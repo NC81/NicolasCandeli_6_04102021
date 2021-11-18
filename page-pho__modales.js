@@ -18,13 +18,13 @@ const figcaptionCarrousel = document.querySelector(".modale-carrous figcaption")
 // FORMULAIRE
 class AffichageFormulaire {
   // Ouverture du formulaire
-  ouvre(pho) {
+  ouvre(photographe) {
     boutonOuvreForm.addEventListener("click", () => {
       formModale.style.display = "block";
       formModale.setAttribute("aria-hidden", "false");
       blocPage.setAttribute("aria-hidden", "true");
       formModale.focus();
-      titreForm.innerHTML = "Contactez-moi <br />" + pho.name;
+      titreForm.innerHTML = "Contactez-moi <br />" + photographe.name;
     });
   }
   // Fermeture du formulaire
@@ -55,8 +55,8 @@ class AffichageFormulaire {
     });
   }
   // Contrôle le lancement des méthodes du formulaire
-  controle(pho) {
-    this.ouvre(pho);
+  controle(photographe) {
+    this.ouvre(photographe);
     this.envoie();
     this.ferme();
   }
